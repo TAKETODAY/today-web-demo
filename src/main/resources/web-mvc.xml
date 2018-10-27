@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Original Author -> 杨海健 (taketoday@foxmail.com) https://taketoday.cn
+  Copyright © Today & 2017 - 2018 All Rights Reserved.
+  
+  DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER
+ 
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+ 
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU Affero General Public License for more details.
+ 
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ -->
+ 
+<!DOCTYPE Web-Configuration PUBLIC 
+			"-//TODAY BLOG//Web - Configuration DTD 2.0//CN"
+				"https://taketoday.cn/framework/web/dtd/web-configuration-2.3.0.dtd">
+<!-- "https://taketoday.cn/framework/web/dtd/web-configuration-2.2.0.dtd"> -->
+
+<Web-Configuration>
+
+	<static-resources mapping="/assets/*" />
+
+	<multipart class="cn.taketoday.web.multipart.CommonsMultipartResolver">
+		<upload-encoding>#{upload.encoding}</upload-encoding>
+		<upload-maxFileSize>#{upload.maxFileSize}</upload-maxFileSize>
+		<upload-maxRequestSize>#{upload.maxRequestSize}</upload-maxRequestSize>
+		<upload-fileSizeThreshold>#{upload.fileSizeThreshold}</upload-fileSizeThreshold>
+	</multipart>
+
+	<!-- <view-resolver class="cn.taketoday.web.view.JstlViewResolver"> -->
+	<view-resolver class="cn.taketoday.web.view.FreeMarkerViewResolver">
+		<view-prefix>#{view.prefix}</view-prefix>
+		<view-suffix>#{view.suffix}</view-suffix>
+		<view-encoding>#{view.encoding}</view-encoding>
+	</view-resolver>
+	
+	<common prefix="/error/">
+		<view res="400" name="BadRequest" />
+		<view res="403" name="Forbidden" />
+		<view res="404" name="NotFound" />
+		<view res="500" name="ServerIsBusy" />
+		<view res="405" name="MethodNotAllowed" />
+	</common>
+	
+	<common>
+		<view res="http://pipe.b3log.org/blogs/Today" 	name="today-blog-pipe" 	type="redirect"/>
+		<view res="https://taketoday.cn" 				name="today" 	type="redirect"/>
+		<view res="https://github.com" 					name="github" 	type="redirect"/>
+		<view res="/login" 								name="login.do" type="redirect"/>
+		<!-- <view res="/index" 								name="/" type="redirect"/> --><!-- 不能使用  '/' 匹配 -->
+	</common>
+	
+</Web-Configuration>
+
+

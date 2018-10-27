@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Original Author -> 杨海健 (taketoday@foxmail.com) https://taketoday.cn
+  Copyright © Today & 2017 - 2018 All Rights Reserved.
+  
+  DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER
+ 
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+ 
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU Affero General Public License for more details.
+ 
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ -->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+	<display-name>TODAY WEB DEMO</display-name>
+	<context-param>
+		<param-name>WebMvcConfigLocation</param-name>
+		<param-value>web-mvc.xml</param-value>
+	</context-param>
+
+	<error-page>
+		<error-code>400</error-code>
+		<location>/BadRequest</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/Forbidden</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/NotFound</location>
+	</error-page>
+	<error-page>
+		<error-code>405</error-code>
+		<location>/MethodNotAllowed</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/ServerIsBusy</location>
+	</error-page>
+	<welcome-file-list>
+		<welcome-file>/index</welcome-file>
+	</welcome-file-list>
+</web-app>
