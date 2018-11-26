@@ -50,7 +50,7 @@ public final class PathVariableController {
 	}
 
 	@ActionMapping(value = { "/paths/{name}" }, method = RequestMethod.GET)
-	public String path(@PathVariable String name) {
+	public String path(@PathVariable(regex = "[\\s\\S]*") String name) {
 		return name;
 	}
 
@@ -60,7 +60,9 @@ public final class PathVariableController {
 	}
 
 	@ActionMapping(value = { "/path/{name}/{id}-{today}.html" }, method = RequestMethod.GET)
-	public String path_(@PathVariable String name, @PathVariable Integer id, @PathVariable Integer today) {
+	public String path_(@PathVariable(regex = "[\\s\\S]*") String name, //
+			@PathVariable Integer id, @PathVariable Integer today) //
+	{
 		return "name -> " + name + "/id -> " + id + "/today->" + today;
 	}
 

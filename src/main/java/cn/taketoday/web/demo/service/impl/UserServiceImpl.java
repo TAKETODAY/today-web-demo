@@ -21,6 +21,7 @@ package cn.taketoday.web.demo.service.impl;
 
 import cn.taketoday.context.annotation.Autowired;
 import cn.taketoday.context.annotation.Service;
+import cn.taketoday.web.demo.aspect.Logger;
 import cn.taketoday.web.demo.dao.UserDao;
 import cn.taketoday.web.demo.domain.User;
 import cn.taketoday.web.demo.service.UserService;
@@ -31,12 +32,13 @@ import cn.taketoday.web.demo.service.UserService;
  *         2018-10-27 09:56
  */
 @Service
-public final class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDao userDao;
 
 	@Override
+	@Logger("login in service")
 	public User login(User user) {
 		return userDao.login(user);
 	}

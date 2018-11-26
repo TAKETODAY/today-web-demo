@@ -17,38 +17,24 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package cn.taketoday.web.demo.converter;
+package cn.taketoday.web.demo.aspect;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import cn.taketoday.context.annotation.ParameterConverter;
-import cn.taketoday.context.conversion.Converter;
-import cn.taketoday.context.exception.ConversionException;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * 
  * @author Today <br>
- * 		2018-08-08 07:19
+ * 
+ *         2018-11-10 19:06
  */
-@ParameterConverter
-public final class DateConverter implements Converter<String, Date> {
-	
-	@Override
-	public Date doConvert(String source) throws ConversionException {
-		
-		if (source == null) {
-			return null;
-		}
-		try {
-			
-			return new SimpleDateFormat("yyyy-MM-dd").parse(source);
-		} catch (ParseException e) {
-			throw new ConversionException(e);
-		}
-	}
-	
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ ElementType.METHOD, ElementType.TYPE })
+public @interface Logger {
+
+	String value() default "";
+
 }
-
-

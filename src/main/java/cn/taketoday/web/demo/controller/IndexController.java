@@ -44,11 +44,12 @@ public final class IndexController extends BaseController {
 
 	private static final long serialVersionUID = -2144421103258985200L;
 
+//	@Resource
 	@Autowired
 	private UserService userService;
 
-	@ActionMapping(value = { "/", "/index", "/index.html" }, method = RequestMethod.GET)
-	public String index(HttpServletRequest request, HttpSession session, @RequestParam(required = false) String arr) {
+	@ActionMapping(value = { "/", "/index", "/index.html" }, method = { RequestMethod.GET, RequestMethod.POST })
+	public String index(HttpServletRequest request, HttpSession session, @RequestParam String arr) {
 
 		String userId = request.getParameter("userId");
 		String userName = request.getParameter("userName");

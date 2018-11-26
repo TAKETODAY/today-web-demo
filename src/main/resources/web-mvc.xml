@@ -21,7 +21,7 @@
  
 <!DOCTYPE Web-Configuration PUBLIC 
 			"-//TODAY BLOG//Web - Configuration DTD 2.0//CN"
-				"https://taketoday.cn/framework/web/dtd/web-configuration-2.3.0.dtd">
+				"https://taketoday.cn/framework/web/dtd/web-configuration-2.3.3.dtd">
 <!-- "https://taketoday.cn/framework/web/dtd/web-configuration-2.2.0.dtd"> -->
 
 <Web-Configuration>
@@ -55,7 +55,6 @@
 		<view res="https://taketoday.cn" 				name="today" 	type="redirect"/>
 		<view res="https://github.com" 					name="github" 	type="redirect"/>
 		<view res="/login" 								name="login.do" type="redirect"/>
-		<!-- <view res="/index" 								name="/" type="redirect"/> --><!-- 不能使用  '/' 匹配 -->
 	</common>
 	
 </Web-Configuration>

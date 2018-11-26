@@ -53,9 +53,9 @@ public final class JstlView extends JstlViewResolver {
 	protected Locale locale = Locale.CHINA;
 
 	@Override
-	public void resolveView(String templateName, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-
+	public void resolveView(String templateName, //
+			HttpServletRequest request, HttpServletResponse response) throws Exception //
+	{
 		super.resolveView(templateName, request, response);
 	}
 

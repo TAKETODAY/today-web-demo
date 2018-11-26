@@ -23,8 +23,10 @@ import cn.taketoday.context.annotation.Autowired;
 import cn.taketoday.web.RequestMethod;
 import cn.taketoday.web.annotation.ActionMapping;
 import cn.taketoday.web.annotation.Controller;
+import cn.taketoday.web.annotation.GET;
 import cn.taketoday.web.annotation.Interceptor;
 import cn.taketoday.web.annotation.ResponseBody;
+import cn.taketoday.web.demo.aspect.Logger;
 import cn.taketoday.web.demo.domain.User;
 import cn.taketoday.web.demo.interceptor.LoginInterceptor;
 import cn.taketoday.web.demo.service.UserService;
@@ -43,24 +45,25 @@ import javax.servlet.http.HttpSession;
  *         2018-10-27 10:09
  */
 @Controller
-public final class UserController extends BaseController {
+public class UserController extends BaseController {
 
 	private static final long serialVersionUID = -1;
 
 	@Autowired
 	private UserService userService;
 
-	@ResponseBody(false)
-	@ActionMapping(value = "/login", method = RequestMethod.GET)
+	@GET("/login")
+	@Logger("登录界面")
 	public String login() {
-
 		return "/login/login";
 	}
-
-	@ResponseBody(false)
+	
+	
+	@Logger("登录")
+//	@POST("/login")
 	@ActionMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpSession session, User user, HttpServletRequest request) {
-
+		
 		User login = userService.login(user);
 		if (login == null) {
 			request.setAttribute("msg", "登录失败");
@@ -71,12 +74,13 @@ public final class UserController extends BaseController {
 		return "redirect:/user/info";
 	}
 
-	@ResponseBody(false)
+	@Logger("注册界面")
 	@ActionMapping(value = "/register", method = RequestMethod.GET)
 	public String register() {
 		return "/register/register";
 	}
 
+	@Logger("注册")
 	@ActionMapping(value = "/register", method = RequestMethod.POST)
 	public String register(HttpServletRequest request, User user) {
 
@@ -85,15 +89,14 @@ public final class UserController extends BaseController {
 		}
 		return "redirect:/login";
 	}
-
+	
 	@ActionMapping(value = "/user/info", method = RequestMethod.GET)
 	@Interceptor({ LoginInterceptor.class })
 	public String user(HttpServletRequest request) {
-
 		request.setAttribute("msg", "用户信息 ");
 		return "/user/info";
 	}
-
+	
 	@Interceptor(LoginInterceptor.class)
 	@ActionMapping(value = "/user/list", method = RequestMethod.GET)
 	public String list(HttpServletRequest request, List<User> user) {
@@ -101,7 +104,7 @@ public final class UserController extends BaseController {
 		request.setAttribute("users", user);
 		return "/user/list";
 	}
-
+	
 	@ActionMapping(value = "/user/add", method = RequestMethod.GET)
 	public String add(HttpServletRequest request) {
 		request.setAttribute("msg", "添加用户");
@@ -138,7 +141,7 @@ public final class UserController extends BaseController {
 
 	@ActionMapping(value = "/user/date", method = RequestMethod.GET)
 	public String date(HttpServletRequest request) {
-		request.setAttribute("msg", "日期注入测试");
+		request.setAttribute("msg", "自定义参数解析器测试");
 		return "/param/date";
 	}
 

@@ -37,9 +37,9 @@ import com.alibaba.fastjson.JSON;
 public final class LoginInterceptor implements HandlerInterceptor {
 
 	@Override
-	public boolean beforeProcess(HttpServletRequest request, HttpServletResponse response,
-			HandlerMapping handlerMapping) throws Exception {
-
+	public boolean beforeProcess(HttpServletRequest request, //
+			HttpServletResponse response, HandlerMapping handlerMapping) throws Exception //
+	{
 		if ((request.getSession().getAttribute(Constant.USER_INFO)) == null) {
 			response.getWriter().print(JSON.toJSONString(new Json(false).setCode(401).setMsg("Login Time Out")));
 			return false;

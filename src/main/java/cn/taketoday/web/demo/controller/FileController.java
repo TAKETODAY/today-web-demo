@@ -64,12 +64,12 @@ public final class FileController extends BaseController {
 
 	@ResponseBody
 	@RequestMapping(value = { "/upload" }, method = RequestMethod.POST)
-	public String upload(HttpServletRequest request, HttpSession session, @Multipart MultipartFile uploadFile)
-			throws IOException {
-
+	public String upload(HttpServletRequest request, //
+			HttpSession session, @Multipart MultipartFile uploadFile) throws IOException //
+	{
 		System.out.println(uploadFile.getContentType());
 
-		String upload = "D:/taketoday.cn/webapps/upload/";
+		String upload = "D:/www.yhj.com/webapps/upload/";
 
 		String path = upload + uploadFile.getFileName();
 
