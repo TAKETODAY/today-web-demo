@@ -24,12 +24,16 @@
 
 ```xml
 <!DOCTYPE Web-Configuration PUBLIC 
-	"-//TODAY BLOG//Web - Configuration DTD 2.0//CN"
-		"https://taketoday.cn/framework/web/dtd/web-configuration-2.3.0.dtd">
+			"-//TODAY BLOG//Web - Configuration DTD 2.0//CN"
+				"web-configuration-2.3.3.dtd">
 
+<!--
+ 	"https://taketoday.cn/framework/web/dtd/web-configuration-2.2.3.dtd">
+-->
 <Web-Configuration>
 
-	<static-resources mapping="/assets/*" />
+	<dispatcher-servlet mapping="/;*.do"/>
+	<static-resources mapping="/assets/*"/>
 
 	<multipart class="cn.taketoday.web.multipart.CommonsMultipartResolver">
 		<upload-encoding>#{upload.encoding}</upload-encoding>
@@ -37,22 +41,37 @@
 		<upload-maxRequestSize>#{upload.maxRequestSize}</upload-maxRequestSize>
 		<upload-fileSizeThreshold>#{upload.fileSizeThreshold}</upload-fileSizeThreshold>
 	</multipart>
-
+	
 	<!-- <view-resolver class="cn.taketoday.web.view.JstlViewResolver"> -->
 	<view-resolver class="cn.taketoday.web.view.FreeMarkerViewResolver">
 		<view-prefix>#{view.prefix}</view-prefix>
 		<view-suffix>#{view.suffix}</view-suffix>
 		<view-encoding>#{view.encoding}</view-encoding>
 	</view-resolver>
-	
-	<common prefix="/error/">
-		<view res="400" name="BadRequest" />
-		<view res="403" name="Forbidden" />
-		<view res="404" name="NotFound" />
-		<view res="500" name="ServerIsBusy" />
-		<view res="405" name="MethodNotAllowed" />
-	</common>
-	
+
+	<controller prefix="/error/">
+		<action resource="400" name="BadRequest"/>
+		<action resource="403" name="Forbidden"/>
+		<action resource="404" name="NotFound"/>
+		<action resource="500" name="ServerIsBusy"/>
+		<action resource="405" name="MethodNotAllowed"/>
+	</controller>
+
+	<controller>
+		<action resource="http://pipe.b3log.org/blogs/Today" name="today-blog-pipe" type="redirect"/>
+		<action resource="https://taketoday.cn" name="today" type="redirect"/>
+		<action resource="https://github.com" name="github" type="redirect"/>
+		<action resource="/login" name="login.do" type="redirect"/>
+
+	</controller>
+
+	<controller class="cn.taketoday.web.demo.controller.XMLController" name="xmlController" prefix="/xml/">
+
+		<action name="obj" method="obj" />
+		<action name="test" resource="test" method="test" type="forward"/>
+
+	</controller>
+
 </Web-Configuration>
 ```
 
