@@ -150,15 +150,15 @@
 <script>
 	var contextPath = $("#contextPath").attr("content");
 	$("#file").change(function() {
-		var formDate = new FormData();
-		formDate.append("uploadFile", $('#file')[0].files[0]);
+		var formData = new FormData();
+		formData.append("uploadFile", $('#file')[0].files[0]);
 		$.ajax({
 			url : contextPath + "/upload",
-			data : formDate,
+			data : formData,
 			cache : false,
 			type : "POST",
 			processData : false,
-			/*             contentType: "multipart/form-data", */
+			contentType: "multipart/form-data",
 			contentType : false,
 			success : function(data) {
 				alert(data);

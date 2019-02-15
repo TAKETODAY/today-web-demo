@@ -1,18 +1,14 @@
 package cn.taketoday.web.demo;
 
-import java.io.Serializable;
-
 /**
  * 
  * @author Today <br>
  *         2018-10-27 10:13
  */
-public interface Constant extends Serializable {
+public interface Constant extends cn.taketoday.web.Constant {
 
 	String KEY_CONTEXT_PATH = "contextPath";
 
-	String ADMIN_ARTICLES = "articles";
-	String ADMIN_COMMENTS = "comments";
 	// font
 	String DEFAULT_FONT = "Verdana";
 
@@ -43,10 +39,6 @@ public interface Constant extends Serializable {
 	String USER_INFO = "USER_INFO";
 	/** 文章详情页面article Session */
 	String ARTICLE = "article";
-	/** 上传文件根路径 */
-	String UPLOAD_ROOT_PATH = "UPLOAD_ROOT_PATH";
-
-	String SITE_ROOT_PATH = "UPLOAD_ROOT_PATH";
 
 	/** 分页 */
 	String PAGINATION = "pagination";

@@ -10,7 +10,7 @@
 
 	<#assign length = 3 />
 
-	<form action="set" method="POST">
+	<form action="list" method="GET">
 		<#list 1..length as i>
 			userId:<input type="text" name="users[${i}].userId"><br>
 			age:<input type="text" name="users[${i}].age"><br>

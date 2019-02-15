@@ -1,24 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:choose>
-	<c:when test="${'XMLHttpRequest' == request.getHeader('X-Requested-With')}">
-		400 Bad Request
-	</c:when>
-	<c:otherwise>
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>400 Bad Request</title>
+	<title>403 Access Forbidden</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css">
 <style type="text/css">
 	*{margin:0;font-family:Verdana,"Microsoft YaHei"!important;padding:0}
 	body{background:#dad9d7;font-family:Verdana,"Microsoft YaHei"!important}
-	.bg{width:100%;background:url(${CDN}/static/images/404/back.jpg);background-repeat:no-repeat;background-position:center}
-	.img{background:url(${CDN}/static/images/404/head.png) no-repeat;position:relative;top:160px;width:178px;height:166px}
+	.bg{width:100%;background:url(${cdn}/assets/images/404/back.jpg);background-repeat:no-repeat;background-position:center}
+	.img{background:url(${cdn}/assets/images/404/head.png) no-repeat;position:relative;top:160px;width:178px;height:166px}
 	#box{width:100%;height:100%}
-	#code{font-size:55px;margin-top:170px;font-family:Verdana,"Microsoft YaHei"!important}
+	#code{font-size:55px;margin-top:170px;}
 	#msg{margin:20px 0 20px 0}
 	a{font-size:15px;text-decoration:none;color:#333}
 	a:hover{text-decoration:underline}
@@ -29,24 +22,19 @@
 	@media(max-width:500px){#code{font-size:25px;margin-top:-120px;font-family:Verdana,"Microsoft YaHei"!important}
 	#msg{margin-top:230px;font-family:Verdana,"Microsoft YaHei"!important}a{margin-top:20px}.img{top:120px}}
 </style>
-	<% 
-		response.setStatus(400);
-		response.setHeader("Refresh","30; url="+request.getContextPath());
-	%>
 </head>
 <body>
 	<div class="bg" align="center">
 		<div id="box">
 			<div class="img"></div>
-			<div id="code">400 Bad Request !</div>
-			<div id="msg" style="font-size: 15px">错误请求 !</div>
+			<div id="code">403 Access Forbidden !</div>
+			<div id="msg" style="font-size: 15px">服务器拒绝处理您的请求！您可能没有访问此操作的权限</div>
 		</div>
-		<a class="text" href="${pageContext.request.contextPath}/index.jsp"><img id="home" src="${CDN}/static/images/404/home.png" width="23"/>返回首页</a>
+		<a class="text" href="${contextPath}/index"><img id="home" src="${cdn}/assets/images/404/home.png" width="23"/>返回首页</a>
 		<a class="text" href="javascript:(location=location)">
-			<img id="refresh" src="${CDN}/static/images/404/refresh.png" width="20"/>刷新页面
+			<img id="refresh" src="${cdn}/assets/images/404/refresh.png" width="20"/>刷新页面
 		</a>
-		<p>页面将在<font id="sec">30</font>秒钟后跳转至首页</p>
-		<p style="color:#7e8283;">${Copyright}</p>
+		<p style="color:#7e8283;">${copyright}</p>
 	</div>
 </body>
 <script type="text/javascript" src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
@@ -56,13 +44,13 @@
 	window.onload=function () {
 		NProgress.done();
 		var i=29;
-		setInterval(function () {
-			document.getElementById("sec").innerHTML = i;	
-			i--;
-		},1000);
 	}
+	/* var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?${baiduCode}";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})(); */
 	</script>
 </html>
-
-	</c:otherwise>
-</c:choose>

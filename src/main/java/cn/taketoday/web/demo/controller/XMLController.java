@@ -17,37 +17,42 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package cn.taketoday.web.demo.converter;
+package cn.taketoday.web.demo.controller;
 
-import cn.taketoday.context.conversion.Converter;
-import cn.taketoday.context.exception.ConversionException;
-import cn.taketoday.web.annotation.ParameterConverter;
+import cn.taketoday.context.annotation.Autowired;
+import cn.taketoday.context.utils.StringUtils;
+import cn.taketoday.web.demo.service.UserService;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
  * @author Today <br>
- *         2018-08-08 07:19
+ * 
+ *         2018-12-08 23:15
  */
-@ParameterConverter
-public final class DateConverter implements Converter<String, Date> {
+public class XMLController {
 
-	@Override
-	public Date doConvert(String source) throws ConversionException {
+	@Autowired
+	private UserService userService;
 
-		if (source == null) {
-			return null;
-		}
-		try {
+	public void test(HttpServletRequest request, HttpServletResponse response) {
 
-			return new SimpleDateFormat("yyyy-MM-dd").parse(source);
+		System.err.println(userService);
+		userService.login(null);
+		request.setAttribute("key", "World");
+		System.err.println(request);
+	}
+
+	public Object obj(HttpServletRequest request, HttpServletResponse response) {
+
+		String key = request.getParameter("r");
+		if (StringUtils.isNotEmpty(key)) {
+			return "redirect:/" + key;
 		}
-		catch (ParseException e) {
-			throw new ConversionException(e);
-		}
+		request.setAttribute("key", request.getParameter("key"));
+
+		return "/xml/test";
 	}
 
 }

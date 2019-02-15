@@ -1,20 +1,20 @@
 /**
  * Original Author -> 杨海健 (taketoday@foxmail.com) https://taketoday.cn
- * Copyright © Today & 2017 - 2018 All Rights Reserved.
+ * Copyright © TODAY & 2017 - 2019 All Rights Reserved.
  * 
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
+ * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
+ * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU Affero General Public License
+ * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 package cn.taketoday.web.demo.aspect;
@@ -53,7 +53,7 @@ public class LogAspect {
 
 	@AfterReturning(Logger.class)
 	public void afterReturning(@Returning Object returnValue) {
-		log.debug("@AfterReturning returnValue: [{}]", returnValue);
+		log.info("@AfterReturning returnValue: [{}]", returnValue);
 //		int i = 1 / 0;
 	}
 
@@ -75,13 +75,15 @@ public class LogAspect {
 	@Before(Logger.class)
 	public void before(@Annotated Logger logger, @JoinPoint Joinpoint joinpoint, @Argument User user) {
 
-		log.debug("@Before method in class with logger: [{}]", logger);
+		log.info("@Before method in class with logger: [{}]", logger);
 		AccessibleObject staticPart = joinpoint.getStaticPart();
 		if (staticPart instanceof Method) {
 			Method method = (Method) staticPart;
 			if (method.getName().equals("login") && method.getParameterCount() != 0) {
 				// user != null
-				log.debug("Login requested with user Id: [{}] and password: [{}]", user.getUserId(), user.getPasswd());
+				if (user != null) {
+					log.info("Login requested with user Id: [{}] and password: [{}]", user.getUserId(), user.getPasswd());
+				}
 			}
 		}
 	}
@@ -97,7 +99,7 @@ public class LogAspect {
 	public Object after(@Returning Object returnValue) {
 
 		if (returnValue instanceof User) {
-			log.debug("Current return value is: [{}]", returnValue);
+			log.info("Current return value is: [{}]", returnValue);
 			((User) returnValue).setSex("女");
 		}
 		return returnValue;
@@ -105,9 +107,9 @@ public class LogAspect {
 
 	@Around(Logger.class)
 	public Object around(@JoinPoint Joinpoint joinpoint) throws Throwable {
-		log.debug("@Around Before method");
+		log.info("@Around Before method");
 		Object proceed = joinpoint.proceed();
-		log.debug("@Around After method");
+		log.info("@Around After method");
 		return proceed;
 	}
 

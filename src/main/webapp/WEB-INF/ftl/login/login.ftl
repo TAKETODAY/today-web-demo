@@ -7,10 +7,12 @@
 <body>
 
 	<form action="login" method="POST">
-		userId:<input type="text" name="userId"><br>
+		userId:<input type="text" name="userId" value="${userId}"><br>
 		passwd:<input type="password" name="passwd"><br>
 		<input type="submit" value="登录">
 	</form>
+
+	<p color="red" style="color: red;">${msg}</p>
 
 </body>
 </html>

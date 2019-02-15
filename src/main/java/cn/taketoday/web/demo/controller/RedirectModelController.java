@@ -17,37 +17,31 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package cn.taketoday.web.demo.converter;
+package cn.taketoday.web.demo.controller;
 
-import cn.taketoday.context.conversion.Converter;
-import cn.taketoday.context.exception.ConversionException;
-import cn.taketoday.web.annotation.ParameterConverter;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import cn.taketoday.web.annotation.Controller;
+import cn.taketoday.web.annotation.GET;
+import cn.taketoday.web.annotation.PathVariable;
+import cn.taketoday.web.annotation.RequestMapping;
+import cn.taketoday.web.ui.ModelAndView;
+import cn.taketoday.web.ui.RedirectModel;
 
 /**
- * 
  * @author Today <br>
- *         2018-08-08 07:19
+ * 
+ *         2018-12-10 17:16
  */
-@ParameterConverter
-public final class DateConverter implements Converter<String, Date> {
+@Controller
+@RequestMapping("/redirect")
+public class RedirectModelController {
 
-	@Override
-	public Date doConvert(String source) throws ConversionException {
+	@GET("/to/{path}")
+	public ModelAndView view(RedirectModel model, @PathVariable String path) {
 
-		if (source == null) {
-			return null;
-		}
-		try {
+		model.addAttribute("msg", "欢迎登录");
+		System.err.println(path);
 
-			return new SimpleDateFormat("yyyy-MM-dd").parse(source);
-		}
-		catch (ParseException e) {
-			throw new ConversionException(e);
-		}
+		return new ModelAndView("redirect:/" + path);
 	}
 
 }

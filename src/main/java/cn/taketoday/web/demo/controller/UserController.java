@@ -1,20 +1,20 @@
 /**
  * Original Author -> 杨海健 (taketoday@foxmail.com) https://taketoday.cn
- * Copyright © Today & 2017 - 2018 All Rights Reserved.
+ * Copyright © TODAY & 2017 - 2019 All Rights Reserved.
  * 
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
+ * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
+ * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU Affero General Public License
+ * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 package cn.taketoday.web.demo.controller;
@@ -30,6 +30,7 @@ import cn.taketoday.web.demo.aspect.Logger;
 import cn.taketoday.web.demo.domain.User;
 import cn.taketoday.web.demo.interceptor.LoginInterceptor;
 import cn.taketoday.web.demo.service.UserService;
+import cn.taketoday.web.ui.RedirectModel;
 
 import java.util.Date;
 import java.util.List;
@@ -57,24 +58,25 @@ public class UserController extends BaseController {
 	public String login() {
 		return "/login/login";
 	}
-	
-	
+
 	@Logger("登录")
 //	@POST("/login")
 	@ActionMapping(value = "/login", method = RequestMethod.POST)
-	public String login(HttpSession session, User user, HttpServletRequest request) {
-		
+	public String login(HttpSession session, User user, RedirectModel redirectModel) {
+
 		User login = userService.login(user);
 		if (login == null) {
-			request.setAttribute("msg", "登录失败");
-			return "/error";
+			redirectModel.addAttribute("userId", user.getUserId());
+			redirectModel.addAttribute("msg", "登录失败");
+			return "redirect:/login";
 		}
-		request.setAttribute("msg", "登录成功");
+		redirectModel.addAttribute("msg", "登录成功");
 		session.setAttribute(USER_INFO, login);
 		return "redirect:/user/info";
 	}
 
 	@Logger("注册界面")
+//	@ResponseStatus(value = 500, msg = "ERROR")
 	@ActionMapping(value = "/register", method = RequestMethod.GET)
 	public String register() {
 		return "/register/register";
@@ -89,14 +91,14 @@ public class UserController extends BaseController {
 		}
 		return "redirect:/login";
 	}
-	
+
 	@ActionMapping(value = "/user/info", method = RequestMethod.GET)
-	@Interceptor({ LoginInterceptor.class })
+	@Interceptor(LoginInterceptor.class)
 	public String user(HttpServletRequest request) {
 		request.setAttribute("msg", "用户信息 ");
 		return "/user/info";
 	}
-	
+
 	@Interceptor(LoginInterceptor.class)
 	@ActionMapping(value = "/user/list", method = RequestMethod.GET)
 	public String list(HttpServletRequest request, List<User> user) {
@@ -104,7 +106,7 @@ public class UserController extends BaseController {
 		request.setAttribute("users", user);
 		return "/user/list";
 	}
-	
+
 	@ActionMapping(value = "/user/add", method = RequestMethod.GET)
 	public String add(HttpServletRequest request) {
 		request.setAttribute("msg", "添加用户");

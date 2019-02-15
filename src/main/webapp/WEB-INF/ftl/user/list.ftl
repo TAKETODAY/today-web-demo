@@ -7,7 +7,6 @@
 <body>
 
 	<h1>${msg}</h1>
-	${CDN}
 	<#list users as user>
 		用户名：${user.userId}<br/>
 		姓名：${user.userName}<br/>
