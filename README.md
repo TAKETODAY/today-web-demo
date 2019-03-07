@@ -25,10 +25,10 @@
 ```xml
 <!DOCTYPE Web-Configuration PUBLIC 
 			"-//TODAY BLOG//Web - Configuration DTD 2.0//CN"
-				"web-configuration-2.3.3.dtd">
+				"https://taketoday.cn/framework/web/dtd/web-configuration-2.3.3.dtd">
 
 <!--
- 	"https://taketoday.cn/framework/web/dtd/web-configuration-2.2.3.dtd">
+ 	"https://taketoday.cn/framework/web/dtd/web-configuration-2.3.3.dtd">
 -->
 <Web-Configuration>
 
