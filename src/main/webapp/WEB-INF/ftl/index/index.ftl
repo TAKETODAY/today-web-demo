@@ -8,14 +8,13 @@
 
 <h3>URL: ${url}
 <br>
+<#list q as it>
+	q:${it}<br>
+</#list>
 
-	<c:forEach items="${q}" var="it">
-		q:${it}<br>
-	</c:forEach>
-	
-	<c:forEach items="${Q}" var="w">
+<#list Q as w>
 		Q:${w}<br>
-	</c:forEach>
+</#list>
 
 <br>
 	userId:${userId}

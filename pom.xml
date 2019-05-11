@@ -17,7 +17,8 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.0</version>
+			<version>1.18.6</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
@@ -27,7 +28,7 @@
 		<dependency>
 			<groupId>cn.taketoday</groupId>
 			<artifactId>today-web</artifactId>
-			<version>2.3.6.RELEASE</version>
+			<version>latest</version>
 		</dependency>
 		<dependency>
 			<groupId>jstl</groupId>

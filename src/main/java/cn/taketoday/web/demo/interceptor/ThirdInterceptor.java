@@ -19,31 +19,26 @@
  */
 package cn.taketoday.web.demo.interceptor;
 
-import cn.taketoday.web.demo.Constant;
-import cn.taketoday.web.interceptor.HandlerInterceptor;
-import cn.taketoday.web.mapping.HandlerMapping;
-import cn.taketoday.web.utils.Json;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.alibaba.fastjson.JSON;
+import cn.taketoday.web.interceptor.HandlerInterceptor;
+import cn.taketoday.web.mapping.HandlerMapping;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * 
- * @author Today <br>
- *         2018-10-27 10:13
+ * @author TODAY <br>
+ * 		   2019-04-09 17:11
  */
-public class LoginInterceptor implements HandlerInterceptor {
+@Slf4j
+public class ThirdInterceptor implements HandlerInterceptor {
 
 	@Override
 	public boolean beforeProcess(HttpServletRequest request, //
 			HttpServletResponse response, HandlerMapping handlerMapping) throws Exception //
 	{
-		if ((request.getSession().getAttribute(Constant.USER_INFO)) == null) {
-			response.getWriter().print(JSON.toJSONString(new Json(false).setCode(401).setMsg("Login Time Out")));
-			return false;
-		}
+		log.info("third");
+		response.getWriter().println("third");
 		return true;
 	}
 

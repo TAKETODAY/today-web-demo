@@ -19,6 +19,13 @@
  */
 package cn.taketoday.web.demo.aspect;
 
+import java.lang.reflect.AccessibleObject;
+import java.lang.reflect.Method;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.aopalliance.intercept.Joinpoint;
+
 import cn.taketoday.aop.annotation.After;
 import cn.taketoday.aop.annotation.AfterReturning;
 import cn.taketoday.aop.annotation.AfterThrowing;
@@ -32,14 +39,9 @@ import cn.taketoday.aop.annotation.JoinPoint;
 import cn.taketoday.aop.annotation.Returning;
 import cn.taketoday.aop.annotation.Throwing;
 import cn.taketoday.context.Ordered;
+import cn.taketoday.context.annotation.Autowired;
 import cn.taketoday.context.annotation.Order;
 import cn.taketoday.web.demo.domain.User;
-
-import java.lang.reflect.AccessibleObject;
-import java.lang.reflect.Method;
-
-import org.aopalliance.intercept.Joinpoint;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -50,6 +52,9 @@ import lombok.extern.slf4j.Slf4j;
 @Aspect
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class LogAspect {
+
+	@Autowired
+	private HttpServletRequest request;
 
 	@AfterReturning(Logger.class)
 	public void afterReturning(@Returning Object returnValue) {
@@ -74,6 +79,8 @@ public class LogAspect {
 	 */
 	@Before(Logger.class)
 	public void before(@Annotated Logger logger, @JoinPoint Joinpoint joinpoint, @Argument User user) {
+
+		log.info("current request is: [{}]", request);
 
 		log.info("@Before method in class with logger: [{}]", logger);
 		AccessibleObject staticPart = joinpoint.getStaticPart();

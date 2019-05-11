@@ -19,13 +19,6 @@
  */
 package cn.taketoday.web.demo.multipart;
 
-import cn.taketoday.web.exception.BadRequestException;
-import cn.taketoday.web.exception.FileSizeExceededException;
-import cn.taketoday.web.mapping.MethodParameter;
-import cn.taketoday.web.multipart.AbstractMultipartResolver;
-import cn.taketoday.web.multipart.CommonsMultipartFile;
-import cn.taketoday.web.multipart.MultipartFile;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -39,6 +32,12 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import cn.taketoday.web.exception.BadRequestException;
+import cn.taketoday.web.exception.FileSizeExceededException;
+import cn.taketoday.web.mapping.MethodParameter;
+import cn.taketoday.web.multipart.AbstractMultipartResolver;
+import cn.taketoday.web.multipart.CommonsMultipartFile;
+import cn.taketoday.web.multipart.MultipartFile;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -59,9 +58,9 @@ public final class CustomMultipartResolver extends AbstractMultipartResolver {
 			MethodParameter methodParameter) throws Exception {
 
 		ServletFileUpload servletFileUpload = new ServletFileUpload(new DiskFileItemFactory());
-		servletFileUpload.setHeaderEncoding(encoding);
-		servletFileUpload.setFileSizeMax(maxFileSize);
-		servletFileUpload.setSizeMax(maxRequestSize);
+		servletFileUpload.setHeaderEncoding(getEncoding());
+		servletFileUpload.setFileSizeMax(getMaxFileSize());
+		servletFileUpload.setSizeMax(getMaxRequestSize());
 		try {
 			List<FileItem> fileItems = servletFileUpload.parseRequest(request);
 			return parseFileItems(fileItems, methodParameter.getParameterClass(), methodParameterName, methodParameter);
@@ -69,13 +68,13 @@ public final class CustomMultipartResolver extends AbstractMultipartResolver {
 		}
 		catch (FileUploadBase.SizeLimitExceededException ex) {
 			log.error("the request was rejected because its size exceeds the configured maximum -> [{}] bytes",
-					maxRequestSize);
-			throw new FileSizeExceededException(maxRequestSize, ex);
+					getMaxRequestSize());
+			throw new FileSizeExceededException(getMaxRequestSize(), ex);
 		}
 		catch (FileUploadBase.FileSizeLimitExceededException ex) {
 			log.error("The upload file exceeds its maximum permitted size -> [{}] bytes", methodParameterName,
-					maxFileSize);
-			throw new FileSizeExceededException(maxFileSize, ex);
+					getMaxFileSize());
+			throw new FileSizeExceededException(getMaxFileSize(), ex);
 		}
 		catch (FileUploadException ex) {
 			log.error("ERROR -> [{}] caused by {}", ex.getMessage(), ex.getCause(), ex);

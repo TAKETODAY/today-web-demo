@@ -38,7 +38,7 @@ public class BaseController implements Constant {
 	}
 
 	public Json sendToClient(boolean success, String msg, Object data) {
-		return new Json(success, msg, data);
+		return new Json(success, msg, 200, data);
 	}
 
 }

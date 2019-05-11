@@ -19,17 +19,18 @@
  */
 package cn.taketoday.web.demo.controller;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+
+import cn.taketoday.context.annotation.Autowired;
 import cn.taketoday.web.RequestMethod;
 import cn.taketoday.web.annotation.Controller;
 import cn.taketoday.web.annotation.RequestMapping;
 import cn.taketoday.web.annotation.ResponseStatus;
 import cn.taketoday.web.ui.ModelAndView;
-
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -42,10 +43,18 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(value = { "model", "and", "view" }, method = RequestMethod.GET)
 public class ModelAndViewController {
 
+	@Autowired
+	private HttpServletRequest request;
+
 	@RequestMapping
 	public ModelAndView model() {
-
 		return new ModelAndView("/model/index", "key", "World").setContentType("text/html;charset=UTF-8");
+	}
+
+	@RequestMapping("index")
+	public void index(ModelAndView modelAndView) {
+		modelAndView.setView(request.getHttpServletMapping());
+		modelAndView.setView(request.getRequestURL());
 	}
 
 	@RequestMapping("nothing")
@@ -65,5 +74,4 @@ public class ModelAndViewController {
 	public void display(ModelAndView modelAndView) throws IOException {
 		modelAndView.setView(ImageIO.read(new File("D:/WebSite/data/doc/upload/logo.png")));
 	}
-
 }

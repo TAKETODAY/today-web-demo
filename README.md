@@ -9,7 +9,7 @@
 ```xml
 <context-param>
 	<param-name>WebMvcConfigLocation</param-name>
-	<param-value>xxx.xml</param-value>
+    <param-value>xxx.xml</param-value>
 </context-param>
 ```
 
