@@ -32,38 +32,38 @@ import cn.taketoday.web.annotation.RestController;
 @RestController
 public final class PathVariableController {
 
-	@ActionMapping(value = { "/path/{id}" }, method = RequestMethod.GET)
-	public String pathVariable(@PathVariable Integer id) {
-		return "id -> " + id;
-	}
+    @ActionMapping(value = { "/path/{id}" }, method = RequestMethod.GET)
+    public String pathVariable(@PathVariable Integer id) {
+        return "id -> " + id;
+    }
 
-	@ActionMapping(value = { "/p/**/yhj.html" }, method = RequestMethod.GET)
-	public String path() {
+    @ActionMapping(value = { "/p/**/yhj.html" }, method = RequestMethod.GET)
+    public String path() {
 
-		return "/path/**";
-	}
+        return "/path/**";
+    }
 
-	@ActionMapping(value = { "/pa/{i}" }, method = RequestMethod.GET)
-	public String path(@PathVariable Integer i) {
+    @ActionMapping(value = { "/pa/{i}" }, method = RequestMethod.GET)
+    public String path(@PathVariable Integer i) {
 
-		return "/path/" + i;
-	}
+        return "/path/" + i;
+    }
 
-	@ActionMapping(value = { "/paths/{name}" }, method = RequestMethod.GET)
-	public String path(@PathVariable(regex = "[\\s\\S]*") String name) {
-		return name;
-	}
+    @ActionMapping(value = { "/paths/{name}" }, method = RequestMethod.GET)
+    public String path(@PathVariable(regex = "[\\s\\S]*") String name) {
+        return name;
+    }
 
-	@ActionMapping(value = { "/path/{name}/{id}.html" }, method = RequestMethod.GET)
-	public String path_(@PathVariable String name, @PathVariable Integer id) {
-		return "name -> " + name + "/id -> " + id;
-	}
+    @ActionMapping(value = { "/path/{name}/{id}.html" }, method = RequestMethod.GET)
+    public String path_(@PathVariable String name, @PathVariable Integer id) {
+        return "name -> " + name + "/id -> " + id;
+    }
 
-	@ActionMapping(value = { "/path/{name}/{id}-{today}.html" }, method = RequestMethod.GET)
-	public String path_(@PathVariable(regex = "[\\s\\S]*") String name, //
-			@PathVariable Integer id, @PathVariable Integer today) //
-	{
-		return "name -> " + name + "/id -> " + id + "/today->" + today;
-	}
+    @ActionMapping(value = { "/path/{name}/{id}-{today}.html" }, method = RequestMethod.GET)
+    public String path_(@PathVariable(regex = "[\\s\\S]*") String name, //
+            @PathVariable Integer id, @PathVariable Integer today) //
+    {
+        return "name -> " + name + "/id -> " + id + "/today->" + today;
+    }
 
 }

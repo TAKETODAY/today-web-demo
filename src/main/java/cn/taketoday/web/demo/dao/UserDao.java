@@ -28,8 +28,8 @@ import cn.taketoday.web.demo.domain.User;
  */
 public interface UserDao {
 
-	boolean save(User user);
+    boolean save(User user);
 
-	User login(User user);
+    User login(User user);
 
 }

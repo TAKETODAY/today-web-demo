@@ -41,27 +41,27 @@ import lombok.extern.slf4j.Slf4j;
 @Interceptor({ FirstInterceptor.class, SecondInterceptor.class, ThirdInterceptor.class, FourthInterceptor.class })
 public class InterceptorController {
 
-	@GET
-	@Interceptor(LoginInterceptor.class)
-	public String index() {
-		log.info("index");
-		return "index";
-	}
+    @GET
+    @Interceptor(LoginInterceptor.class)
+    public String index() {
+        log.info("index");
+        return "index";
+    }
 
-	@GET("/exclude/first")
-	@Interceptor(exclude = FirstInterceptor.class)
-	public String exclude() {
-		log.info("exclude FirstInterceptor");
-		return "exclude FirstInterceptor";
-	}
+    @GET("/exclude/first")
+    @Interceptor(exclude = FirstInterceptor.class)
+    public String exclude() {
+        log.info("exclude FirstInterceptor");
+        return "exclude FirstInterceptor";
+    }
 
-	@GET("/exclude/all")
-	@Interceptor(exclude = { //
-			FirstInterceptor.class, SecondInterceptor.class, ThirdInterceptor.class, FourthInterceptor.class //
-	})
-	public String excludeAll() {
-		log.info("exclude All");
-		return "exclude All";
-	}
+    @GET("/exclude/all")
+    @Interceptor(exclude = { //
+            FirstInterceptor.class, SecondInterceptor.class, ThirdInterceptor.class, FourthInterceptor.class //
+    })
+    public String excludeAll() {
+        log.info("exclude All");
+        return "exclude All";
+    }
 
 }

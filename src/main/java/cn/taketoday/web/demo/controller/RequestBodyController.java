@@ -36,24 +36,24 @@ import java.util.List;
 @Controller
 public final class RequestBodyController extends BaseController {
 
-	private static final long serialVersionUID = -3387876040533333679L;
+    private static final long serialVersionUID = -3387876040533333679L;
 
-	@ActionMapping(value = "/body", method = RequestMethod.GET)
-	public String request(Model model) {
+    @ActionMapping(value = "/body", method = RequestMethod.GET)
+    public String request(Model model) {
 
-		return "/body/body";
-	}
+        return "/body/body";
+    }
 
-	@ActionMapping(value = "/body", method = RequestMethod.POST)
-	public User request(@RequestBody User user) {
+    @ActionMapping(value = "/body", method = RequestMethod.POST)
+    public User request(@RequestBody User user) {
 
-		return user;
-	}
+        return user;
+    }
 
-	@ActionMapping(value = "/body/list", method = RequestMethod.POST)
-	public List<User> request(@RequestBody List<User> users) {
+    @ActionMapping(value = "/body/list", method = RequestMethod.POST)
+    public List<User> request(@RequestBody List<User> users) {
 
-		return users;
-	}
+        return users;
+    }
 
 }

@@ -35,22 +35,22 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class AnnotationController {
 
-	@GET("header")
-	public String annotation(HttpServletRequest request, @Header("User-Agent") String agent) {
+    @GET("header")
+    public String annotation(HttpServletRequest request, @Header("User-Agent") String agent) {
 
-		return request.getMethod() + " User-Agent -> " + agent;
-	}
+        return request.getMethod() + " User-Agent -> " + agent;
+    }
 
-	@GET("cookie")
-	public String cookie(HttpServletRequest request, @Cookie("JSESSIONID") String sessionId) {
+    @GET("cookie")
+    public String cookie(HttpServletRequest request, @Cookie("JSESSIONID") String sessionId) {
 
-		return request.getMethod() + " your sessionId -> " + sessionId;
-	}
+        return request.getMethod() + " your sessionId -> " + sessionId;
+    }
 
-	@GET("application")
-	public String application(HttpServletRequest request, @Application("contextPath") String sessionId) {
+    @GET("application")
+    public String application(HttpServletRequest request, @Application("contextPath") String sessionId) {
 
-		return request.getMethod() + " your contextPath -> " + sessionId;
-	}
+        return request.getMethod() + " your contextPath -> " + sessionId;
+    }
 
 }

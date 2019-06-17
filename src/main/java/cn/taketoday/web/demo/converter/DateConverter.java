@@ -35,19 +35,19 @@ import java.util.Date;
 @ParameterConverter
 public final class DateConverter implements Converter<String, Date> {
 
-	@Override
-	public Date doConvert(String source) throws ConversionException {
+    @Override
+    public Date convert(String source) throws ConversionException {
 
-		if (source == null) {
-			return null;
-		}
-		try {
+        if (source == null) {
+            return null;
+        }
+        try {
 
-			return new SimpleDateFormat("yyyy-MM-dd").parse(source);
-		}
-		catch (ParseException e) {
-			throw new ConversionException(e);
-		}
-	}
+            return new SimpleDateFormat("yyyy-MM-dd").parse(source);
+        }
+        catch (ParseException e) {
+            throw new ConversionException(e);
+        }
+    }
 
 }

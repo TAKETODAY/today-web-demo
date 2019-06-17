@@ -32,22 +32,22 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ThymeleafController extends BaseController {
 
-	private static final long serialVersionUID = -3151382835705083327L;
+    private static final long serialVersionUID = -3151382835705083327L;
 
-	@ActionMapping("/thymeleaf")
-	public String thymeleaf(HttpServletRequest request) {
+    @ActionMapping("/thymeleaf")
+    public String thymeleaf(HttpServletRequest request) {
 
-		request.setAttribute("hello", "Hello thymeleaf");
+        request.setAttribute("hello", "Hello thymeleaf");
 
-		return "/hello";
-	}
+        return "/hello";
+    }
 
-	@ActionMapping("/thymeleaf/array")
-	public String thymeleaf_array(HttpServletRequest request) {
+    @ActionMapping("/thymeleaf/array")
+    public String thymeleaf_array(HttpServletRequest request) {
 
-		request.setAttribute("arrays", new Integer[] { 1, 100, 22, 33 });
+        request.setAttribute("arrays", new Integer[] { 1, 100, 22, 33 });
 
-		return "/array";
-	}
+        return "/array";
+    }
 
 }

@@ -33,26 +33,26 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class XMLController {
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
-	public void test(HttpServletRequest request, HttpServletResponse response) {
+    public void test(HttpServletRequest request, HttpServletResponse response) {
 
-		System.err.println(userService);
-		userService.login(null);
-		request.setAttribute("key", "World");
-		System.err.println(request);
-	}
+        System.err.println(userService);
+        userService.login(null);
+        request.setAttribute("key", "World");
+        System.err.println(request);
+    }
 
-	public Object obj(HttpServletRequest request, HttpServletResponse response) {
+    public Object obj(HttpServletRequest request, HttpServletResponse response) {
 
-		String key = request.getParameter("r");
-		if (StringUtils.isNotEmpty(key)) {
-			return "redirect:/" + key;
-		}
-		request.setAttribute("key", request.getParameter("key"));
+        String key = request.getParameter("r");
+        if (StringUtils.isNotEmpty(key)) {
+            return "redirect:/" + key;
+        }
+        request.setAttribute("key", request.getParameter("key"));
 
-		return "/xml/test";
-	}
+        return "/xml/test";
+    }
 
 }

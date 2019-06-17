@@ -35,13 +35,13 @@ import lombok.extern.slf4j.Slf4j;
 @Singleton
 public class FirstInterceptor implements HandlerInterceptor {
 
-	@Override
-	public boolean beforeProcess(HttpServletRequest request, //
-			HttpServletResponse response, HandlerMapping handlerMapping) throws Exception //
-	{
-		log.info("first");
-		response.getWriter().println("first");
-		return true;
-	}
+    @Override
+    public boolean beforeProcess(HttpServletRequest request, //
+            HttpServletResponse response, HandlerMapping handlerMapping) throws Exception //
+    {
+        log.info("first");
+        response.getWriter().println("first");
+        return true;
+    }
 
 }

@@ -44,43 +44,43 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/standard")
 public class StandardArgumentsController {
 
-	// request related
+    // request related
 
-	@GET("/request")
-	public String standardRequestArgs(HttpServletRequest request, Principal user, Locale locale) {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("request = ").append(request).append(", ");
-		buffer.append("userPrincipal = ").append(user).append(", ");
-		buffer.append("requestLocale = ").append(locale);
-		return buffer.toString();
-	}
+    @GET("/request")
+    public String standardRequestArgs(HttpServletRequest request, Principal user, Locale locale) {
+        StringBuilder buffer = new StringBuilder();
+        buffer.append("request = ").append(request).append(", ");
+        buffer.append("userPrincipal = ").append(user).append(", ");
+        buffer.append("requestLocale = ").append(locale);
+        return buffer.toString();
+    }
 
-	@POST("/request/reader")
-	public String requestReader(BufferedReader requestBodyReader) throws IOException {
-		return "Read char request body = " + requestBodyReader.readLine();
-	}
+    @POST("/request/reader")
+    public String requestReader(BufferedReader requestBodyReader) throws IOException {
+        return "Read char request body = " + requestBodyReader.readLine();
+    }
 
-	@GET("/response")
-	public String response(HttpServletResponse response) {
-		return "response = " + response;
-	}
+    @GET("/response")
+    public String response(HttpServletResponse response) {
+        return "response = " + response;
+    }
 
-	@GET("/response/writer")
-	public void availableStandardResponseArguments(Writer responseWriter) throws IOException {
-		responseWriter.write("Wrote char response using Writer");
-	}
+    @GET("/response/writer")
+    public void availableStandardResponseArguments(Writer responseWriter) throws IOException {
+        responseWriter.write("Wrote char response using Writer");
+    }
 
-	@GET("/response/os")
-	public void availableStandardResponseArguments(OutputStream os) throws IOException {
-		os.write("Wrote binary response using OutputStream".getBytes());
-	}
+    @GET("/response/os")
+    public void availableStandardResponseArguments(OutputStream os) throws IOException {
+        os.write("Wrote binary response using OutputStream".getBytes());
+    }
 
-	// HttpSession
-	@GET("/session")
-	public String session(HttpSession session) {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("session=").append(session);
-		return buffer.toString();
-	}
+    // HttpSession
+    @GET("/session")
+    public String session(HttpSession session) {
+        StringBuilder buffer = new StringBuilder();
+        buffer.append("session=").append(session);
+        return buffer.toString();
+    }
 
 }

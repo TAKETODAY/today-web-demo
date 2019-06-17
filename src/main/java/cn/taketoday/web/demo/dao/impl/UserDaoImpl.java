@@ -35,40 +35,40 @@ import java.util.Map;
 @Repository
 public final class UserDaoImpl implements UserDao {
 
-	private Map<String, User> users = new HashMap<>();
+    private Map<String, User> users = new HashMap<>();
 
-	public UserDaoImpl() {
-		users.put("666", new User().setAge(20).setId(1).setBrithday(new Date()).setUserId("666").setUserName("杨海健").setPasswd("666").setSex(
-				"男"));
-		users.put("6666", new User().setAge(20).setId(1).setBrithday(new Date()).setUserId("6666").setUserName("杨海健1").setPasswd(
-				"666").setSex("男"));
-		users.put("66666", new User().setAge(20).setId(1).setBrithday(new Date()).setUserId("66666").setUserName("杨海健2").setPasswd(
-				"666").setSex("男"));
-		users.put("666666", new User().setAge(20).setId(1).setBrithday(new Date()).setUserId("666666").setUserName("杨海健3").setPasswd(
-				"666666").setSex("男"));
-	}
+    public UserDaoImpl() {
+        users.put("666", new User().setAge(20).setId(1).setBrithday(new Date()).setUserId("666").setUserName("杨海健").setPasswd("666").setSex(
+                "男"));
+        users.put("6666", new User().setAge(20).setId(1).setBrithday(new Date()).setUserId("6666").setUserName("杨海健1").setPasswd(
+                "666").setSex("男"));
+        users.put("66666", new User().setAge(20).setId(1).setBrithday(new Date()).setUserId("66666").setUserName("杨海健2").setPasswd(
+                "666").setSex("男"));
+        users.put("666666", new User().setAge(20).setId(1).setBrithday(new Date()).setUserId("666666").setUserName("杨海健3").setPasswd(
+                "666666").setSex("男"));
+    }
 
-	@Override
-	public boolean save(User user) {
+    @Override
+    public boolean save(User user) {
 
-		users.put(user.getUserId(), user);
+        users.put(user.getUserId(), user);
 
-		return true;
-	}
+        return true;
+    }
 
-	@Override
-	public User login(User user) {
-		if (user == null) {
-			return null;
-		}
-		User user_ = users.get(user.getUserId());
+    @Override
+    public User login(User user) {
+        if (user == null) {
+            return null;
+        }
+        User user_ = users.get(user.getUserId());
 
-		if (user_ == null) {
-			return null;
-		}
-		if (!user_.getPasswd().equals(user.getPasswd())) {
-			return null;
-		}
-		return user_;
-	}
+        if (user_ == null) {
+            return null;
+        }
+        if (!user_.getPasswd().equals(user.getPasswd())) {
+            return null;
+        }
+        return user_;
+    }
 }

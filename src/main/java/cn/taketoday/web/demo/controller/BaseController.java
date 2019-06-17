@@ -20,25 +20,13 @@
 package cn.taketoday.web.demo.controller;
 
 import cn.taketoday.web.demo.Constant;
-import cn.taketoday.web.utils.Json;
 
 /**
  * 
  * @author Today <br>
  *         2018-10-27 10:08
  */
-public class BaseController implements Constant {
-
-	private static final long serialVersionUID = -2443355463459978644L;
-
-	protected String contextPath;
-
-	public Json sendToClient(boolean success, String msg) {
-		return new Json(success, msg);
-	}
-
-	public Json sendToClient(boolean success, String msg, Object data) {
-		return new Json(success, msg, 200, data);
-	}
+@SuppressWarnings("serial")
+public abstract class BaseController implements Constant {
 
 }

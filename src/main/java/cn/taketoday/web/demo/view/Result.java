@@ -1,9 +1,9 @@
 /**
  * Original Author -> 杨海健 (taketoday@foxmail.com) https://taketoday.cn
  * Copyright © TODAY & 2017 - 2019 All Rights Reserved.
- * 
- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER
  *
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -13,21 +13,30 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ *   
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * along with this program.  If not, see [http://www.gnu.org/licenses/]
  */
-package cn.taketoday.web.demo;
+package cn.taketoday.web.demo.view;
+
+import cn.taketoday.web.demo.Constant;
 
 /**
+ * The request result
  * 
- * @author Today <br>
- *         2018-10-27 10:16
+ * @author TODAY <br>
+ *         2019-04-23 08:58
  */
-public abstract class Version {
+public interface Result extends Constant {
 
-    public static final String getVersion() {
-        return "1.0.1";
-    }
+    public static final int STATUS_SUCCESS = 200;
+    public static final int STATUS_FAILED = 500;
 
+    Object getData();
+
+    int getCode();
+
+    boolean isSuccess();
+
+    String getMessage();
 }

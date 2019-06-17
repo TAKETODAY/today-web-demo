@@ -28,8 +28,8 @@ import cn.taketoday.web.demo.domain.User;
  */
 public interface UserService {
 
-	public boolean register(User user);
+    public boolean register(User user);
 
-	public User login(User user);
+    public User login(User user);
 
 }

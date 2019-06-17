@@ -43,48 +43,48 @@ import lombok.Setter;
 @SuppressWarnings("serial")
 public final class Config implements Constant, ServletContextAware, InitializingBean {
 
-	private String cdn;
-	private String icp;
-	private String host;
-	private String name;
-	private String index;
-	private String upload;
-	private String keywords;
-	private String copyright;
-	private String baiduCode;
+    private String cdn;
+    private String icp;
+    private String host;
+    private String name;
+    private String index;
+    private String upload;
+    private String keywords;
+    private String copyright;
+    private String baiduCode;
 
-	@Value("#{site.server.path}")
-	private String serverPath;
+    @Value("#{site.server.path}")
+    private String serverPath;
 
-	private String description;
-	private String otherFooterInfo;
+    private String description;
+    private String otherFooterInfo;
 
-	private ServletContext servletContext;
+    private ServletContext servletContext;
 
-	public Config() {
+    public Config() {
 
-	}
+    }
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		if (servletContext == null) {
-			throw new ConfigurationException("Servlet Context Can't Be null");
-		}
-		servletContext.setAttribute(KEY_CONTEXT_PATH, servletContext.getContextPath());
-		servletContext.setAttribute(START_TIME, System.currentTimeMillis());
-		servletContext.setAttribute(ICP, icp);
-		servletContext.setAttribute(HOST, host);
-		servletContext.setAttribute(CDN, cdn);
-		servletContext.setAttribute(KEYWORDS, keywords);
-		servletContext.setAttribute(SITE_NAME, name);
-		servletContext.setAttribute(COPYRIGHT, copyright);
-		servletContext.setAttribute(BAIDU_CODE, baiduCode);
-		servletContext.setAttribute(DESCRIPTION, description);
-		servletContext.setAttribute(OTHER_FOOTER_INFO, otherFooterInfo);
-	}
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        if (servletContext == null) {
+            throw new ConfigurationException("Servlet Context Can't Be null");
+        }
+        servletContext.setAttribute(KEY_CONTEXT_PATH, servletContext.getContextPath());
+        servletContext.setAttribute(START_TIME, System.currentTimeMillis());
+        servletContext.setAttribute(ICP, icp);
+        servletContext.setAttribute(HOST, host);
+        servletContext.setAttribute(CDN, cdn);
+        servletContext.setAttribute(KEYWORDS, keywords);
+        servletContext.setAttribute(SITE_NAME, name);
+        servletContext.setAttribute(COPYRIGHT, copyright);
+        servletContext.setAttribute(BAIDU_CODE, baiduCode);
+        servletContext.setAttribute(DESCRIPTION, description);
+        servletContext.setAttribute(OTHER_FOOTER_INFO, otherFooterInfo);
+    }
 
-	@Override
-	public void setServletContext(ServletContext servletContext) {
-		this.servletContext = servletContext;
-	}
+    @Override
+    public void setServletContext(ServletContext servletContext) {
+        this.servletContext = servletContext;
+    }
 }

@@ -48,121 +48,121 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class UserController extends BaseController {
 
-	private static final long serialVersionUID = -1;
+    private static final long serialVersionUID = -1;
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
-	@GET("/login")
-	@Logger("登录界面")
-	public String login() {
-		return "/login/login";
-	}
+    @GET("/login")
+    @Logger("登录界面")
+    public String login() {
+        return "/login/login";
+    }
 
-	@Logger("登录")
+    @Logger("登录")
 //	@POST("/login")
-	@ActionMapping(value = "/login", method = RequestMethod.POST)
-	public String login(HttpSession session, User user, RedirectModel redirectModel) {
+    @ActionMapping(value = "/login", method = RequestMethod.POST)
+    public String login(HttpSession session, User user, RedirectModel redirectModel) {
 
-		User login = userService.login(user);
-		if (login == null) {
-			redirectModel.addAttribute("userId", user.getUserId());
-			redirectModel.addAttribute("msg", "登录失败");
-			return "redirect:/login";
-		}
-		redirectModel.addAttribute("msg", "登录成功");
-		session.setAttribute(USER_INFO, login);
-		return "redirect:/user/info";
-	}
+        User login = userService.login(user);
+        if (login == null) {
+            redirectModel.addAttribute("userId", user.getUserId());
+            redirectModel.addAttribute("msg", "登录失败");
+            return "redirect:/login";
+        }
+        redirectModel.addAttribute("msg", "登录成功");
+        session.setAttribute(USER_INFO, login);
+        return "redirect:/user/info";
+    }
 
-	@Logger("注册界面")
+    @Logger("注册界面")
 //	@ResponseStatus(value = 500, msg = "ERROR")
-	@ActionMapping(value = "/register", method = RequestMethod.GET)
-	public String register() {
-		return "/register/register";
-	}
+    @ActionMapping(value = "/register", method = RequestMethod.GET)
+    public String register() {
+        return "/register/register";
+    }
 
-	@Logger("注册")
-	@ActionMapping(value = "/register", method = RequestMethod.POST)
-	public String register(HttpServletRequest request, User user) {
+    @Logger("注册")
+    @ActionMapping(value = "/register", method = RequestMethod.POST)
+    public String register(HttpServletRequest request, User user) {
 
-		if (!userService.register(user)) {
-			return "error!";
-		}
-		return "redirect:/login";
-	}
+        if (!userService.register(user)) {
+            return "error!";
+        }
+        return "redirect:/login";
+    }
 
-	@ActionMapping(value = "/user/info", method = RequestMethod.GET)
-	@Interceptor(LoginInterceptor.class)
-	public String user(HttpServletRequest request) {
-		request.setAttribute("msg", "用户信息 ");
-		return "/user/info";
-	}
+    @ActionMapping(value = "/user/info", method = RequestMethod.GET)
+    @Interceptor(LoginInterceptor.class)
+    public String user(HttpServletRequest request) {
+        request.setAttribute("msg", "用户信息 ");
+        return "/user/info";
+    }
 
-	@Interceptor(LoginInterceptor.class)
-	@ActionMapping(value = "/user/list", method = RequestMethod.GET)
-	public String list(HttpServletRequest request, List<User> user) {
-		request.setAttribute("msg", "用户信息");
-		request.setAttribute("users", user);
-		return "/user/list";
-	}
+    @Interceptor(LoginInterceptor.class)
+    @ActionMapping(value = "/user/list", method = RequestMethod.GET)
+    public String list(HttpServletRequest request, List<User> user) {
+        request.setAttribute("msg", "用户信息");
+        request.setAttribute("users", user);
+        return "/user/list";
+    }
 
-	@ActionMapping(value = "/user/add", method = RequestMethod.GET)
-	public String add(HttpServletRequest request) {
-		request.setAttribute("msg", "添加用户");
-		request.setAttribute("max", 5);
-		return "/user/add";
-	}
+    @ActionMapping(value = "/user/add", method = RequestMethod.GET)
+    public String add(HttpServletRequest request) {
+        request.setAttribute("msg", "添加用户");
+        request.setAttribute("max", 5);
+        return "/user/add";
+    }
 
-	@ResponseBody
-	@ActionMapping(value = "/user/add", method = RequestMethod.POST)
-	public String add(List<User> users) {
-		System.out.println(users);
-		return users.toString();
-	}
+    @ResponseBody
+    @ActionMapping(value = "/user/add", method = RequestMethod.POST)
+    public String add(List<User> users) {
+        System.out.println(users);
+        return users.toString();
+    }
 
-	@ActionMapping(value = "/user/map", method = RequestMethod.GET)
-	public String addMap(HttpServletRequest request) {
-		request.setAttribute("msg", "添加用户");
-		return "/user/map";
-	}
+    @ActionMapping(value = "/user/map", method = RequestMethod.GET)
+    public String addMap(HttpServletRequest request) {
+        request.setAttribute("msg", "添加用户");
+        return "/user/map";
+    }
 
-	@ResponseBody
-	@ActionMapping(value = "/user/map", method = RequestMethod.POST)
-	public String add(Map<String, User> users) {
-		System.out.println(users);
-		return users.toString();
-	}
+    @ResponseBody
+    @ActionMapping(value = "/user/map", method = RequestMethod.POST)
+    public String add(Map<String, User> users) {
+        System.out.println(users);
+        return users.toString();
+    }
 
-	@ActionMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) {
+    @ActionMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpSession session) {
 
-		session.invalidate();
-		return "redirect:/login";
-	}
+        session.invalidate();
+        return "redirect:/login";
+    }
 
-	@ActionMapping(value = "/user/date", method = RequestMethod.GET)
-	public String date(HttpServletRequest request) {
-		request.setAttribute("msg", "自定义参数解析器测试");
-		return "/param/date";
-	}
+    @ActionMapping(value = "/user/date", method = RequestMethod.GET)
+    public String date(HttpServletRequest request) {
+        request.setAttribute("msg", "自定义参数解析器测试");
+        return "/param/date";
+    }
 
-	@ResponseBody
-	@ActionMapping(value = "/user/date", method = RequestMethod.POST)
-	public User date(User user) {
-		return user;
-	}
+    @ResponseBody
+    @ActionMapping(value = "/user/date", method = RequestMethod.POST)
+    public User date(User user) {
+        return user;
+    }
 
-	@ResponseBody
-	@ActionMapping(value = "/user/d", method = RequestMethod.GET)
-	public Date date(Date date) {
-		return date;
-	}
+    @ResponseBody
+    @ActionMapping(value = "/user/d", method = RequestMethod.GET)
+    public Date date(Date date) {
+        return date;
+    }
 
-	@ResponseBody
-	@ActionMapping(value = "/user/set", method = RequestMethod.POST)
-	public Set<User> set(Set<User> users) {
-		return users;
-	}
+    @ResponseBody
+    @ActionMapping(value = "/user/set", method = RequestMethod.POST)
+    public Set<User> set(Set<User> users) {
+        return users;
+    }
 
 }

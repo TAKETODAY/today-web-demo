@@ -28,18 +28,18 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author TODAY <br>
- * 		   2019-04-09 17:12
+ *         2019-04-09 17:12
  */
 @Slf4j
 public class FourthInterceptor implements HandlerInterceptor {
 
-	@Override
-	public boolean beforeProcess(HttpServletRequest request, //
-			HttpServletResponse response, HandlerMapping handlerMapping) throws Exception //
-	{
-		log.info("fourth");
-		response.getWriter().println("fourth");
-		return true;
-	}
+    @Override
+    public boolean beforeProcess(HttpServletRequest request, //
+            HttpServletResponse response, HandlerMapping handlerMapping) throws Exception //
+    {
+        log.info("fourth");
+        response.getWriter().println("fourth");
+        return true;
+    }
 
 }

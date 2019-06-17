@@ -35,13 +35,13 @@ import cn.taketoday.web.ui.RedirectModel;
 @RequestMapping("/redirect")
 public class RedirectModelController {
 
-	@GET("/to/{path}")
-	public ModelAndView view(RedirectModel model, @PathVariable String path) {
+    @GET("/to/{path}")
+    public ModelAndView view(RedirectModel model, @PathVariable String path) {
 
-		model.addAttribute("msg", "欢迎登录");
-		System.err.println(path);
+        model.addAttribute("msg", "欢迎登录");
+        System.err.println(path);
 
-		return new ModelAndView("redirect:/" + path);
-	}
+        return new ModelAndView("redirect:/" + path);
+    }
 
 }

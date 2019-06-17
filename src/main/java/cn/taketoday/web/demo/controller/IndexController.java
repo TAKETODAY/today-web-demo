@@ -42,62 +42,62 @@ import javax.servlet.http.HttpSession;
 @Controller
 public final class IndexController extends BaseController {
 
-	private static final long serialVersionUID = -2144421103258985200L;
+    private static final long serialVersionUID = -2144421103258985200L;
 
 //	@Resource
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
-	@ActionMapping(value = { "/", "/index", "/index.html" }, method = { RequestMethod.GET, RequestMethod.POST })
-	public String index(HttpServletRequest request, HttpSession session, @RequestParam String arr) {
+    @ActionMapping(value = { "/", "/index", "/index.html" }, method = { RequestMethod.GET, RequestMethod.POST })
+    public String index(HttpServletRequest request, HttpSession session, @RequestParam String arr) {
 
-		String userId = request.getParameter("userId");
-		String userName = request.getParameter("userName");
-		request.setAttribute("q", arr);
-		request.setAttribute("userId", userId);
-		request.setAttribute("userName", userName);
-		request.setAttribute("url", request.getRequestURL());
+        String userId = request.getParameter("userId");
+        String userName = request.getParameter("userName");
+        request.setAttribute("q", arr);
+        request.setAttribute("userId", userId);
+        request.setAttribute("userName", userName);
+        request.setAttribute("url", request.getRequestURL());
 
-		return "/index/index";
-	}
+        return "/index/index";
+    }
 
-	@ResponseBody
-	@ActionMapping(value = { "/index.action" }, method = RequestMethod.GET)
-	public String index(@RequestParam(required = false) final String q, String userName, Integer userId, Model model,
-			HttpServletRequest request) {
+    @ResponseBody
+    @ActionMapping(value = { "/index.action" }, method = RequestMethod.GET)
+    public String index(@RequestParam(required = false) final String q, String userName, Integer userId, Model model,
+            HttpServletRequest request) {
 
-		model.addAttribute("q", q);
-		model.addAttribute("userId", userId);
-		model.addAttribute("userName", userName);
-		model.addAttribute("url", request.getRequestURL());
+        model.addAttribute("q", q);
+        model.addAttribute("userId", userId);
+        model.addAttribute("userName", userName);
+        model.addAttribute("url", request.getRequestURL());
 
-		return "{\"q\":" + q + ",\"userId\":\"" + userId + "\",\"userName\":\"" + userName + "\"}";
-	}
+        return "{\"q\":" + q + ",\"userId\":\"" + userId + "\",\"userName\":\"" + userName + "\"}";
+    }
 
-	@GET({ "/redirect/{path}" })
-	public String redirect(@PathVariable String path) {
+    @GET({ "/redirect/{path}" })
+    public String redirect(@PathVariable String path) {
 
-		return "redirect:/" + path;
-	}
+        return "redirect:/" + path;
+    }
 
-	@ResponseBody(false)
-	@ActionMapping(value = { "/index.htm" }, method = RequestMethod.GET)
-	public String index(String userName, Integer userId, HttpServletRequest request,
-			@RequestParam(required = false) String[] Q, Integer[] q) {
-		request.setAttribute("Q", Q);
-		request.setAttribute("q", q);
-		request.setAttribute("userId", userId);
-		request.setAttribute("userName", userName);
-		return "/index/index";
-	}
+    @ResponseBody(false)
+    @ActionMapping(value = { "/index.htm" }, method = RequestMethod.GET)
+    public String index(String userName, Integer userId, HttpServletRequest request,
+            @RequestParam(required = false) String[] Q, Integer[] q) {
+        request.setAttribute("Q", Q);
+        request.setAttribute("q", q);
+        request.setAttribute("userId", userId);
+        request.setAttribute("userName", userName);
+        return "/index/index";
+    }
 
-	@RequestMapping(value = { "/index.h" }, method = RequestMethod.GET)
-	public String index(String userName, Integer userId, HttpServletRequest request, Long[] q, long[] Q) {
-		request.setAttribute("Q", Q);
-		request.setAttribute("q", q);
-		request.setAttribute("userId", userId);
-		request.setAttribute("userName", userName);
-		return "/index/index";
-	}
+    @RequestMapping(value = { "/index.h" }, method = RequestMethod.GET)
+    public String index(String userName, Integer userId, HttpServletRequest request, Long[] q, long[] Q) {
+        request.setAttribute("Q", Q);
+        request.setAttribute("q", q);
+        request.setAttribute("userId", userId);
+        request.setAttribute("userName", userName);
+        return "/index/index";
+    }
 
 }

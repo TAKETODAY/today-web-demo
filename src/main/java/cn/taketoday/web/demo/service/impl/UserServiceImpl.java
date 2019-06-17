@@ -34,18 +34,18 @@ import cn.taketoday.web.demo.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 
-	@Autowired
-	private UserDao userDao;
+    @Autowired
+    private UserDao userDao;
 
-	@Override
-	@Logger("login in service")
-	public User login(User user) {
-		return userDao.login(user);
-	}
+    @Override
+    @Logger("login in service")
+    public User login(User user) {
+        return userDao.login(user);
+    }
 
-	@Override
-	public boolean register(User user) {
-		return userDao.save(user);
-	}
+    @Override
+    public boolean register(User user) {
+        return userDao.save(user);
+    }
 
 }

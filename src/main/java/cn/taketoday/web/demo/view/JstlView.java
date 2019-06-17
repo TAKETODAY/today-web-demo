@@ -39,27 +39,27 @@ import lombok.extern.slf4j.Slf4j;
 //@Component(Constant.VIEW_RESOLVER)
 public class JstlView extends JstlViewResolver implements InitializingBean {
 
-	@Value("#{view.prefix}")
-	private String prefix;
+    @Value("#{view.prefix}")
+    private String prefix;
 
-	@Value("#{view.suffix}")
-	private String suffix;
+    @Value("#{view.suffix}")
+    private String suffix;
 
-	@Value("#{view.encoding}")
-	private String encoding;
+    @Value("#{view.encoding}")
+    private String encoding;
 
 //	protected Locale locale = Locale.CHINA;
 
-	@Override
-	public void resolveView(String templateName, //
-			HttpServletRequest request, HttpServletResponse response) throws Throwable //
-	{
-		super.resolveView(templateName, request, response);
-	}
+    @Override
+    public void resolveView(String templateName, //
+            HttpServletRequest request, HttpServletResponse response) throws Throwable //
+    {
+        super.resolveView(templateName, request, response);
+    }
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		log.info("Configuration My Jstl View Resolver Success.");
-	}
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        log.info("Configuration My Jstl View Resolver Success.");
+    }
 
 }

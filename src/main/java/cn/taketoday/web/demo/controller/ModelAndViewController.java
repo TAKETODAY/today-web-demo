@@ -43,35 +43,35 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(value = { "model", "and", "view" }, method = RequestMethod.GET)
 public class ModelAndViewController {
 
-	@Autowired
-	private HttpServletRequest request;
+    @Autowired
+    private HttpServletRequest request;
 
-	@RequestMapping
-	public ModelAndView model() {
-		return new ModelAndView("/model/index", "key", "World").setContentType("text/html;charset=UTF-8");
-	}
+    @RequestMapping
+    public ModelAndView model() {
+        return new ModelAndView("/model/index", "key", "World").setContentType("text/html;charset=UTF-8");
+    }
 
-	@RequestMapping("index")
-	public void index(ModelAndView modelAndView) {
-		modelAndView.setView(request.getHttpServletMapping());
-		modelAndView.setView(request.getRequestURL());
-	}
+    @RequestMapping("index")
+    public void index(ModelAndView modelAndView) {
+        modelAndView.setView(request.getHttpServletMapping());
+        modelAndView.setView(request.getRequestURL());
+    }
 
-	@RequestMapping("nothing")
-	public ModelAndView nothing() {
-		log.info("nothing");
-		return new ModelAndView();
-	}
+    @RequestMapping("nothing")
+    public ModelAndView nothing() {
+        log.info("nothing");
+        return new ModelAndView();
+    }
 
-	@RequestMapping("/script")
-	@ResponseStatus(value = 500, msg = "出错啦")
-	public void script(ModelAndView modelAndView) {
-		modelAndView.setContentType("text/html;charset=UTF-8");
-		modelAndView.setView(new StringBuilder("<script>alert('HELLO， 你好');</script>"));
-	}
+    @RequestMapping("/script")
+    @ResponseStatus(value = 500, msg = "出错啦")
+    public void script(ModelAndView modelAndView) {
+        modelAndView.setContentType("text/html;charset=UTF-8");
+        modelAndView.setView(new StringBuilder("<script>alert('HELLO， 你好');</script>"));
+    }
 
-	@RequestMapping("/display")
-	public void display(ModelAndView modelAndView) throws IOException {
-		modelAndView.setView(ImageIO.read(new File("D:/WebSite/data/doc/upload/logo.png")));
-	}
+    @RequestMapping("/display")
+    public void display(ModelAndView modelAndView) throws IOException {
+        modelAndView.setView(ImageIO.read(new File("D:/WebSite/data/doc/upload/logo.png")));
+    }
 }

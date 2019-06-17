@@ -53,71 +53,71 @@ import lombok.extern.slf4j.Slf4j;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class LogAspect {
 
-	@Autowired
-	private HttpServletRequest request;
+    @Autowired
+    private HttpServletRequest request;
 
-	@AfterReturning(Logger.class)
-	public void afterReturning(@Returning Object returnValue) {
-		log.info("@AfterReturning returnValue: [{}]", returnValue);
+    @AfterReturning(Logger.class)
+    public void afterReturning(@Returning Object returnValue) {
+        log.info("@AfterReturning returnValue: [{}]", returnValue);
 //		int i = 1 / 0;
-	}
+    }
 
-	@AfterThrowing(Logger.class)
-	public void afterThrowing(@Throwing Throwable throwable) {
-		log.error("@AfterThrowing With Msg: [{}]", throwable.getMessage(), throwable);
-	}
+    @AfterThrowing(Logger.class)
+    public void afterThrowing(@Throwing Throwable throwable) {
+        log.error("@AfterThrowing With Msg: [{}]", throwable.getMessage(), throwable);
+    }
 
-	/**
-	 * You can get all method argument use {@link Argument} or {@link Arguments}
-	 * 
-	 * @param logger
-	 *            the annotation
-	 * @param joinpoint
-	 * 
-	 * @param user
-	 *            the parameter of the method
-	 */
-	@Before(Logger.class)
-	public void before(@Annotated Logger logger, @JoinPoint Joinpoint joinpoint, @Argument User user) {
+    /**
+     * You can get all method argument use {@link Argument} or {@link Arguments}
+     * 
+     * @param logger
+     *            the annotation
+     * @param joinpoint
+     * 
+     * @param user
+     *            the parameter of the method
+     */
+    @Before(Logger.class)
+    public void before(@Annotated Logger logger, @JoinPoint Joinpoint joinpoint, @Argument User user) {
 
-		log.info("current request is: [{}]", request);
+        log.info("current request is: [{}]", request);
 
-		log.info("@Before method in class with logger: [{}]", logger);
-		AccessibleObject staticPart = joinpoint.getStaticPart();
-		if (staticPart instanceof Method) {
-			Method method = (Method) staticPart;
-			if (method.getName().equals("login") && method.getParameterCount() != 0) {
-				// user != null
-				if (user != null) {
-					log.info("Login requested with user Id: [{}] and password: [{}]", user.getUserId(), user.getPasswd());
-				}
-			}
-		}
-	}
+        log.info("@Before method in class with logger: [{}]", logger);
+        AccessibleObject staticPart = joinpoint.getStaticPart();
+        if (staticPart instanceof Method) {
+            Method method = (Method) staticPart;
+            if (method.getName().equals("login") && method.getParameterCount() != 0) {
+                // user != null
+                if (user != null) {
+                    log.info("Login requested with user Id: [{}] and password: [{}]", user.getUserId(), user.getPasswd());
+                }
+            }
+        }
+    }
 
-	/**
-	 * You can get the return value and change it
-	 * 
-	 * @param returnValue
-	 *            return value from method or join point
-	 * @return
-	 */
-	@After(Logger.class)
-	public Object after(@Returning Object returnValue) {
+    /**
+     * You can get the return value and change it
+     * 
+     * @param returnValue
+     *            return value from method or join point
+     * @return
+     */
+    @After(Logger.class)
+    public Object after(@Returning Object returnValue) {
 
-		if (returnValue instanceof User) {
-			log.info("Current return value is: [{}]", returnValue);
-			((User) returnValue).setSex("女");
-		}
-		return returnValue;
-	}
+        if (returnValue instanceof User) {
+            log.info("Current return value is: [{}]", returnValue);
+            ((User) returnValue).setSex("女");
+        }
+        return returnValue;
+    }
 
-	@Around(Logger.class)
-	public Object around(@JoinPoint Joinpoint joinpoint) throws Throwable {
-		log.info("@Around Before method");
-		Object proceed = joinpoint.proceed();
-		log.info("@Around After method");
-		return proceed;
-	}
+    @Around(Logger.class)
+    public Object around(@JoinPoint Joinpoint joinpoint) throws Throwable {
+        log.info("@Around Before method");
+        Object proceed = joinpoint.proceed();
+        log.info("@Around After method");
+        return proceed;
+    }
 
 }
