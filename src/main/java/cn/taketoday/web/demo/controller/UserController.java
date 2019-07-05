@@ -19,6 +19,14 @@
  */
 package cn.taketoday.web.demo.controller;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import cn.taketoday.context.annotation.Autowired;
 import cn.taketoday.web.RequestMethod;
 import cn.taketoday.web.annotation.ActionMapping;
@@ -31,14 +39,6 @@ import cn.taketoday.web.demo.domain.User;
 import cn.taketoday.web.demo.interceptor.LoginInterceptor;
 import cn.taketoday.web.demo.service.UserService;
 import cn.taketoday.web.ui.RedirectModel;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * 

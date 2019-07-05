@@ -19,15 +19,14 @@
  */
 package cn.taketoday.web.demo;
 
+import javax.servlet.ServletContext;
+
 import cn.taketoday.context.annotation.Configuration;
 import cn.taketoday.context.annotation.Props;
 import cn.taketoday.context.annotation.Value;
 import cn.taketoday.context.exception.ConfigurationException;
 import cn.taketoday.context.factory.InitializingBean;
 import cn.taketoday.web.ServletContextAware;
-
-import javax.servlet.ServletContext;
-
 import lombok.Getter;
 import lombok.Setter;
 

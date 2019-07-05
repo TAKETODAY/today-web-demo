@@ -19,13 +19,12 @@
  */
 package cn.taketoday.web.demo.view;
 
-import cn.taketoday.context.annotation.Value;
-import cn.taketoday.context.factory.InitializingBean;
-import cn.taketoday.web.view.JstlViewResolver;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cn.taketoday.context.annotation.Value;
+import cn.taketoday.context.factory.InitializingBean;
+import cn.taketoday.web.view.JstlViewResolver;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

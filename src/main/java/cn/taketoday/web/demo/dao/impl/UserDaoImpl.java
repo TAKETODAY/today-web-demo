@@ -19,13 +19,13 @@
  */
 package cn.taketoday.web.demo.dao.impl;
 
-import cn.taketoday.context.annotation.Repository;
-import cn.taketoday.web.demo.dao.UserDao;
-import cn.taketoday.web.demo.domain.User;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import cn.taketoday.context.annotation.Repository;
+import cn.taketoday.web.demo.dao.UserDao;
+import cn.taketoday.web.demo.domain.User;
 
 /**
  * 

@@ -19,11 +19,6 @@
  */
 package cn.taketoday.web.demo.controller;
 
-import cn.taketoday.web.annotation.GET;
-import cn.taketoday.web.annotation.POST;
-import cn.taketoday.web.annotation.RequestMapping;
-import cn.taketoday.web.annotation.RestController;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -34,6 +29,11 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import cn.taketoday.web.annotation.GET;
+import cn.taketoday.web.annotation.POST;
+import cn.taketoday.web.annotation.RequestMapping;
+import cn.taketoday.web.annotation.RestController;
 
 /**
  * 

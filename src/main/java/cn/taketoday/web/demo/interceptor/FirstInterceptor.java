@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import cn.taketoday.context.annotation.Singleton;
 import cn.taketoday.web.interceptor.HandlerInterceptor;
-import cn.taketoday.web.mapping.HandlerMapping;
+import cn.taketoday.web.mapping.WebMapping;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -37,7 +37,7 @@ public class FirstInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean beforeProcess(HttpServletRequest request, //
-            HttpServletResponse response, HandlerMapping handlerMapping) throws Exception //
+            HttpServletResponse response, WebMapping handlerMapping) throws Exception //
     {
         log.info("first");
         response.getWriter().println("first");

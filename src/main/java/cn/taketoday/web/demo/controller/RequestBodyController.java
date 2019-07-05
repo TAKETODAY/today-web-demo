@@ -19,14 +19,14 @@
  */
 package cn.taketoday.web.demo.controller;
 
+import java.util.List;
+
 import cn.taketoday.web.RequestMethod;
 import cn.taketoday.web.annotation.ActionMapping;
 import cn.taketoday.web.annotation.Controller;
 import cn.taketoday.web.annotation.RequestBody;
 import cn.taketoday.web.demo.domain.User;
 import cn.taketoday.web.ui.Model;
-
-import java.util.List;
 
 /**
  * 

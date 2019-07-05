@@ -19,12 +19,12 @@
  */
 package cn.taketoday.web.demo.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import cn.taketoday.context.annotation.Autowired;
 import cn.taketoday.context.utils.StringUtils;
 import cn.taketoday.web.demo.service.UserService;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Today <br>

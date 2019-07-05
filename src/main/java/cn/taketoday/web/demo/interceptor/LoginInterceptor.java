@@ -27,7 +27,7 @@ import com.alibaba.fastjson.JSON;
 import cn.taketoday.web.demo.Constant;
 import cn.taketoday.web.demo.view.Json;
 import cn.taketoday.web.interceptor.HandlerInterceptor;
-import cn.taketoday.web.mapping.HandlerMapping;
+import cn.taketoday.web.mapping.WebMapping;
 
 /**
  * 
@@ -38,7 +38,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean beforeProcess(HttpServletRequest request, //
-            HttpServletResponse response, HandlerMapping handlerMapping) throws Exception //
+            HttpServletResponse response, WebMapping handlerMapping) throws Exception //
     {
         if ((request.getSession().getAttribute(Constant.USER_INFO)) == null) {
             response.getWriter().print(JSON.toJSONString(Json.unauthorized("Login Time Out")));
