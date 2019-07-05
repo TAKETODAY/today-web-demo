@@ -50,6 +50,8 @@ public final class IndexController extends BaseController implements WebMvcConfi
 
     private static final long serialVersionUID = -2144421103258985200L;
 
+    
+    //D:\www.yhj.com\webapps\today-web-demo
     @Value("#{site.server.appPath}")
     private String path;
 
@@ -60,7 +62,7 @@ public final class IndexController extends BaseController implements WebMvcConfi
         registry.addResourceMapping("/assets/**")//
                 .enableGzip()//
                 .gzipMinLength(10240)//
-                .addLocations("classpath:/assets/");
+                .addLocations("file:///D:/www.yhj.com/webapps/today-web-demo/assets/");
 
         registry.addResourceMapping("/webjars/**")//
                 .addLocations("classpath:/META-INF/resources/webjars/");
@@ -78,7 +80,7 @@ public final class IndexController extends BaseController implements WebMvcConfi
         registry.addResourceMapping(LoginInterceptor.class)//
                 .setOrder(Ordered.HIGHEST_PRECEDENCE)//
                 .setPathPatterns("/assets/admin/**")//
-                .addLocations("classpath:/assets/admin/");
+                .addLocations("file:///D:/www.yhj.com/webapps/today-web-demo/admin/");
     }
 
 //	@Resource
