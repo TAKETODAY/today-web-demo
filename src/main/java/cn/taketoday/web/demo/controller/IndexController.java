@@ -19,7 +19,12 @@
  */
 package cn.taketoday.web.demo.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import cn.taketoday.context.Ordered;
 import cn.taketoday.context.annotation.Autowired;
+import cn.taketoday.context.annotation.Value;
 import cn.taketoday.web.RequestMethod;
 import cn.taketoday.web.annotation.ActionMapping;
 import cn.taketoday.web.annotation.Controller;
@@ -28,11 +33,12 @@ import cn.taketoday.web.annotation.PathVariable;
 import cn.taketoday.web.annotation.RequestMapping;
 import cn.taketoday.web.annotation.RequestParam;
 import cn.taketoday.web.annotation.ResponseBody;
+import cn.taketoday.web.config.WebMvcConfiguration;
+import cn.taketoday.web.demo.interceptor.LoginInterceptor;
 import cn.taketoday.web.demo.service.UserService;
+import cn.taketoday.web.mapping.ResourceMappingRegistry;
+import cn.taketoday.web.resource.CacheControl;
 import cn.taketoday.web.ui.Model;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * 
@@ -40,9 +46,40 @@ import javax.servlet.http.HttpSession;
  *         2018-10-27 10:10
  */
 @Controller
-public final class IndexController extends BaseController {
+public final class IndexController extends BaseController implements WebMvcConfiguration {
 
     private static final long serialVersionUID = -2144421103258985200L;
+
+    @Value("#{site.server.appPath}")
+    private String path;
+
+    // swagger-resources/configuration/ui
+    @Override
+    public void configureResourceMappings(ResourceMappingRegistry registry) {
+
+        registry.addResourceMapping("/assets/**")//
+                .enableGzip()//
+                .gzipMinLength(10240)//
+                .addLocations("classpath:/assets/");
+
+        registry.addResourceMapping("/webjars/**")//
+                .addLocations("classpath:/META-INF/resources/webjars/");
+
+        registry.addResourceMapping("/swagger/**")//
+                .addLocations("classpath:/META-INF/resources/");
+
+        registry.addResourceMapping("/upload/**")//
+                .addLocations("file:///" + path + "/upload/");
+
+        registry.addResourceMapping("/favicon.ico")//
+                .addLocations("classpath:/favicon.ico")//
+                .cacheControl(CacheControl.newInstance().publicCache());
+
+        registry.addResourceMapping(LoginInterceptor.class)//
+                .setOrder(Ordered.HIGHEST_PRECEDENCE)//
+                .setPathPatterns("/assets/admin/**")//
+                .addLocations("classpath:/assets/admin/");
+    }
 
 //	@Resource
     @Autowired
