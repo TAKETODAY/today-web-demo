@@ -92,10 +92,10 @@ public final class FileController extends BaseController {
 
             File file = new File(path);
             System.out.println(path);
-            if (!multipartFile.save(file)) {
-                return "<script>alert('upload error !')</script>";
+            multipartFile.save(file);
+
+            return "<script>alert('upload error !')</script>";
 //				response.getWriter().print("<script>alert('upload error !')</script>");
-            }
         }
 //		response.getWriter().print("<script>alert('upload success !')</script>");
         return "<script>alert('upload success !')</script>";

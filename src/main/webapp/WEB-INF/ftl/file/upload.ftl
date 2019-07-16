@@ -50,8 +50,7 @@
 
 </body>
 
-<script type="text/javascript"
-	src="${contextPath}/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="${contextPath}/assets/js/jquery.min.js"></script>
 <script type="text/javascript">
 	/* function ajax(url,params,method,async,callback,errCall){
 	 $.ajax({

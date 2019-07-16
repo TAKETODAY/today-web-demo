@@ -50,8 +50,7 @@ public final class IndexController extends BaseController implements WebMvcConfi
 
     private static final long serialVersionUID = -2144421103258985200L;
 
-    
-    //D:\www.yhj.com\webapps\today-web-demo
+    // D:\www.yhj.com\webapps\today-web-demo
     @Value("#{site.server.appPath}")
     private String path;
 
@@ -60,8 +59,8 @@ public final class IndexController extends BaseController implements WebMvcConfi
     public void configureResourceMappings(ResourceMappingRegistry registry) {
 
         registry.addResourceMapping("/assets/**")//
-                .enableGzip()//
-                .gzipMinLength(10240)//
+//                .enableGzip()//
+//                .gzipMinLength(10240)//
                 .addLocations("file:///D:/www.yhj.com/webapps/today-web-demo/assets/");
 
         registry.addResourceMapping("/webjars/**")//
@@ -105,10 +104,10 @@ public final class IndexController extends BaseController implements WebMvcConfi
     public String index(@RequestParam(required = false) final String q, String userName, Integer userId, Model model,
             HttpServletRequest request) {
 
-        model.addAttribute("q", q);
-        model.addAttribute("userId", userId);
-        model.addAttribute("userName", userName);
-        model.addAttribute("url", request.getRequestURL());
+        model.attribute("q", q);
+        model.attribute("userId", userId);
+        model.attribute("userName", userName);
+        model.attribute("url", request.getRequestURL());
 
         return "{\"q\":" + q + ",\"userId\":\"" + userId + "\",\"userName\":\"" + userName + "\"}";
     }

@@ -19,9 +19,7 @@
  */
 package cn.taketoday.web.demo.interceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import cn.taketoday.web.RequestContext;
 import cn.taketoday.web.interceptor.HandlerInterceptor;
 import cn.taketoday.web.mapping.WebMapping;
 import lombok.extern.slf4j.Slf4j;
@@ -34,12 +32,9 @@ import lombok.extern.slf4j.Slf4j;
 public class SecondInterceptor implements HandlerInterceptor {
 
     @Override
-    public boolean beforeProcess(HttpServletRequest request, //
-            HttpServletResponse response, WebMapping handlerMapping) throws Exception //
-    {
+    public boolean beforeProcess(RequestContext requestContext, WebMapping webMapping) throws Throwable {
         log.info("second");
-        response.getWriter().println("second");
-
+        requestContext.getWriter().write("second");
         return true;
     }
 

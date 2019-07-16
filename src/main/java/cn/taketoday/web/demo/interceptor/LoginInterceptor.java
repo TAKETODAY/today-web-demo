@@ -19,11 +19,11 @@
  */
 package cn.taketoday.web.demo.interceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.alibaba.fastjson.JSON;
 
+import cn.taketoday.web.RequestContext;
 import cn.taketoday.web.demo.Constant;
 import cn.taketoday.web.demo.view.Json;
 import cn.taketoday.web.interceptor.HandlerInterceptor;
@@ -37,11 +37,11 @@ import cn.taketoday.web.mapping.WebMapping;
 public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
-    public boolean beforeProcess(HttpServletRequest request, //
-            HttpServletResponse response, WebMapping handlerMapping) throws Exception //
-    {
-        if ((request.getSession().getAttribute(Constant.USER_INFO)) == null) {
-            response.getWriter().print(JSON.toJSONString(Json.unauthorized("Login Time Out")));
+    public boolean beforeProcess(RequestContext requestContext, WebMapping webMapping) throws Throwable {
+
+        if ((requestContext.nativeSession(HttpSession.class).getAttribute(Constant.USER_INFO)) == null) {
+
+            requestContext.getWriter().write(JSON.toJSONString(Json.failed().setCode(401).setMsg("Login Time Out")));
             return false;
         }
         return true;

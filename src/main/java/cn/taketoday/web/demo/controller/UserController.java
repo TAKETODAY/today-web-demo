@@ -66,11 +66,11 @@ public class UserController extends BaseController {
 
         User login = userService.login(user);
         if (login == null) {
-            redirectModel.addAttribute("userId", user.getUserId());
-            redirectModel.addAttribute("msg", "登录失败");
+            redirectModel.attribute("userId", user.getUserId());
+            redirectModel.attribute("msg", "登录失败");
             return "redirect:/login";
         }
-        redirectModel.addAttribute("msg", "登录成功");
+        redirectModel.attribute("msg", "登录成功");
         session.setAttribute(USER_INFO, login);
         return "redirect:/user/info";
     }
