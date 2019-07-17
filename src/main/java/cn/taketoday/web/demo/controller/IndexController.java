@@ -41,8 +41,7 @@ import cn.taketoday.web.resource.CacheControl;
 import cn.taketoday.web.ui.Model;
 
 /**
- * 
- * @author Today <br>
+ * @author TODAY <br>
  *         2018-10-27 10:10
  */
 @Controller
@@ -79,7 +78,7 @@ public final class IndexController extends BaseController implements WebMvcConfi
         registry.addResourceMapping(LoginInterceptor.class)//
                 .setOrder(Ordered.HIGHEST_PRECEDENCE)//
                 .setPathPatterns("/assets/admin/**")//
-                .addLocations("file:///D:/www.yhj.com/webapps/today-web-demo/admin/");
+                .addLocations("file:///D:/www.yhj.com/webapps/today-web-demo/assets/admin/");
     }
 
 //	@Resource
