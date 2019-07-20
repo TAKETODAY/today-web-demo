@@ -28,7 +28,10 @@
 		</encoder>
 	</appender>
 
-	<root level="INFO, DEBUG">
+<!-- 
+	<root level="INFO, DEBUG"> 
+-->
+	<root level="TRACE">
 		<appender-ref ref="STDOUT" />
 	</root>
 	
