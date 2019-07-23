@@ -26,6 +26,7 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import cn.taketoday.context.annotation.Autowired;
 import cn.taketoday.web.RequestMethod;
@@ -39,6 +40,7 @@ import cn.taketoday.web.demo.domain.User;
 import cn.taketoday.web.demo.interceptor.LoginInterceptor;
 import cn.taketoday.web.demo.service.UserService;
 import cn.taketoday.web.ui.RedirectModel;
+import cn.taketoday.web.validation.Errors;
 
 /**
  * 
@@ -62,17 +64,22 @@ public class UserController extends BaseController {
     @Logger("登录")
 //	@POST("/login")
     @ActionMapping(value = "/login", method = RequestMethod.POST)
-    public String login(HttpSession session, User user, RedirectModel redirectModel) {
+    public String login(HttpSession session, RedirectModel redirectModel, @Valid User user, Errors error) {
+        if (!error.hasErrors()) {
 
-        User login = userService.login(user);
-        if (login == null) {
-            redirectModel.attribute("userId", user.getUserId());
-            redirectModel.attribute("msg", "登录失败");
-            return "redirect:/login";
+            User login = userService.login(user);
+            if (login == null) {
+                redirectModel.attribute("userId", user.getUserId());
+                redirectModel.attribute("msg", "登录失败");
+                return "redirect:/login";
+            }
+            redirectModel.attribute("msg", "登录成功");
+            session.setAttribute(USER_INFO, login);
+            return "redirect:/user/info";
         }
-        redirectModel.attribute("msg", "登录成功");
-        session.setAttribute(USER_INFO, login);
-        return "redirect:/user/info";
+        System.err.println(error.getAllErrors());
+        redirectModel.attribute("msg", error.getAllErrors().toString());
+        return "redirect:/login";
     }
 
     @Logger("注册界面")

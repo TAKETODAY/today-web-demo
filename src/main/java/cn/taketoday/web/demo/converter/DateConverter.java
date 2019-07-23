@@ -21,26 +21,21 @@ package cn.taketoday.web.demo.converter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
-import cn.taketoday.context.conversion.Converter;
+import cn.taketoday.context.annotation.Singleton;
+import cn.taketoday.context.conversion.StringTypeConverter;
 import cn.taketoday.context.exception.ConversionException;
-import cn.taketoday.web.annotation.ParameterConverter;
 
 /**
- * 
- * @author Today <br>
+ * @author TODAY <br>
  *         2018-08-08 07:19
  */
-@ParameterConverter
-public final class DateConverter implements Converter<String, Date> {
+@Singleton
+public class DateConverter extends StringTypeConverter {
 
     @Override
-    public Date convert(String source) throws ConversionException {
+    protected Object convertInternal(Class<?> targetClass, String source) throws ConversionException {
 
-        if (source == null) {
-            return null;
-        }
         try {
 
             return new SimpleDateFormat("yyyy-MM-dd").parse(source);

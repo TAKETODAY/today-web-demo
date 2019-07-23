@@ -24,9 +24,11 @@ import javax.servlet.http.HttpServletResponse;
 import cn.taketoday.web.annotation.ControllerAdvice;
 import cn.taketoday.web.annotation.ExceptionHandler;
 import cn.taketoday.web.demo.view.Json;
+import cn.taketoday.web.demo.view.Result;
 import cn.taketoday.web.exception.AccessForbiddenException;
 import cn.taketoday.web.exception.FileSizeExceededException;
 import cn.taketoday.web.exception.NotFoundException;
+import cn.taketoday.web.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -76,6 +78,15 @@ public class ApplicationExceptionAdvice {
         log.error("An Exception occurred", exception);
 
         return Json.failed(exception.getMessage());
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public Result validExceptionHandler(ValidationException e) {
+
+        System.err.println(e);
+        System.err.println(e.getAllErrors());
+
+        return Json.failed(e.getAllErrors());
     }
 
 }
