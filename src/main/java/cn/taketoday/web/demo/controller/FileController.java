@@ -45,8 +45,7 @@ import cn.taketoday.web.demo.domain.User;
 import cn.taketoday.web.multipart.MultipartFile;
 
 /**
- * 
- * @author Today <br>
+ * @author TODAY <br>
  *         2018-10-27 10:10
  */
 @Controller

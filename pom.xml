@@ -72,6 +72,11 @@
             <version>6.0.17.Final</version>
         </dependency>
 
+        <dependency>
+            <groupId>cn.taketoday</groupId>
+            <artifactId>today-context</artifactId>
+            <version>latest</version>
+        </dependency>
     </dependencies>
 
 
