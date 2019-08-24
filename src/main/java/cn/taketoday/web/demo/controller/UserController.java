@@ -65,21 +65,22 @@ public class UserController extends BaseController {
 //	@POST("/login")
     @ActionMapping(value = "/login", method = RequestMethod.POST)
     public String login(HttpSession session, RedirectModel redirectModel, @Valid User user, Errors error) {
-        if (!error.hasErrors()) {
 
-            User login = userService.login(user);
-            if (login == null) {
-                redirectModel.attribute("userId", user.getUserId());
-                redirectModel.attribute("msg", "登录失败");
-                return "redirect:/login";
-            }
-            redirectModel.attribute("msg", "登录成功");
-            session.setAttribute(USER_INFO, login);
-            return "redirect:/user/info";
+        if (error.hasErrors()) {
+            System.err.println(error.getAllErrors());
+            redirectModel.attribute("msg", error.getAllErrors().toString());
+            return "redirect:/login";
         }
-        System.err.println(error.getAllErrors());
-        redirectModel.attribute("msg", error.getAllErrors().toString());
-        return "redirect:/login";
+
+        User login = userService.login(user);
+        if (login == null) {
+            redirectModel.attribute("userId", user.getUserId());
+            redirectModel.attribute("msg", "登录失败");
+            return "redirect:/login";
+        }
+        redirectModel.attribute("msg", "登录成功");
+        session.setAttribute(USER_INFO, login);
+        return "redirect:/user/info";
     }
 
     @Logger("注册界面")
