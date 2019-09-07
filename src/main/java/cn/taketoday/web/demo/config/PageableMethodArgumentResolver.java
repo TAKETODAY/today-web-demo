@@ -26,7 +26,7 @@ import cn.taketoday.context.utils.StringUtils;
 import cn.taketoday.web.RequestContext;
 import cn.taketoday.web.demo.utils.DemoUtils;
 import cn.taketoday.web.mapping.MethodParameter;
-import cn.taketoday.web.resolver.method.OrderedParameterResolver;
+import cn.taketoday.web.resolver.method.ParameterResolver;
 
 /**
  * @author TODAY <br>
@@ -34,7 +34,7 @@ import cn.taketoday.web.resolver.method.OrderedParameterResolver;
  */
 @Singleton
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class PageableMethodArgumentResolver implements OrderedParameterResolver {
+public class PageableMethodArgumentResolver implements ParameterResolver {
 
     private static final String PARAMETER_SIZE = "size";
     private static final String PARAMETER_CURRENT = "page";
