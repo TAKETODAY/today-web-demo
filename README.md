@@ -41,7 +41,6 @@
     </controller>
 
     <controller>
-        <action resource="redirect:http://pipe.b3log.org/blogs/Today" name="today-blog-pipe" />
         <action resource="redirect:https://taketoday.cn" name="today" />
         <action resource="redirect:https://github.com" name="github" />
         <action resource="redirect:/login" name="login.do" />
@@ -66,9 +65,9 @@ view.prefix 	= /WEB-INF/ftl
 
 ############################################ upload
 upload.encoding 	= UTF-8
-upload.maxFileSize 	= 10240000
-upload.maxRequestSize 		= 1024000000
-upload.fileSizeThreshold	= 1000000000
+upload.maxFileSize 	= 1024MB
+upload.maxRequestSize 		= 1GB
+upload.fileSizeThreshold	= 2048MB
 
 ############################################ freemarker
 freemarker.tag_syntax 				= auto_detect
@@ -85,17 +84,24 @@ freemarker.template_exception_handler 	= ignore
 freemarker.log_template_exceptions 		= false
 
 ```
-> 实例
-- [普通参数注入实例](src/main/java/cn/taketoday/web/demo/controller/IndexController.java)
-- [注解参数注入实例](src/main/java/cn/taketoday/web/demo/controller/AnnotationController.java)
-- [登录实例](src/main/java/cn/taketoday/web/demo/controller/UserController.java)
-- [文件上传实例](src/main/java/cn/taketoday/web/demo/controller/FileController.java)
-- [RequestBody实例](src/main/java/cn/taketoday/web/demo/controller/RequestBodyController.java)
-- [PathVariable实例](src/main/java/cn/taketoday/web/demo/controller/PathVariableController.java)
-- [自定义模板解析器实例](src/main/java/cn/taketoday/web/demo/view/JstlView.java)
-- [自定义参数转换器实例](src/main/java/cn/taketoday/web/demo/converter/DateConverter.java)
-- [自定义多段式文件上传解析器实例](src/main/java/cn/taketoday/web/demo/multipart/CustomMultipartResolver.java)
-- [AOP](src/main/java/cn/taketoday/web/demo/aspect/LogAspect.java)
+> 示例
+- [普通参数注入示例](src/main/java/cn/taketoday/web/demo/controller/IndexController.java)
+- [注解参数注入示例](src/main/java/cn/taketoday/web/demo/controller/AnnotationController.java)
+- [登录示例](src/main/java/cn/taketoday/web/demo/controller/UserController.java)
+- [文件上传示例](src/main/java/cn/taketoday/web/demo/controller/FileController.java)
+- [RequestBody示例](src/main/java/cn/taketoday/web/demo/controller/RequestBodyController.java)
+- [PathVariable示例](src/main/java/cn/taketoday/web/demo/controller/PathVariableController.java)
+- [自定义多段式文件上传解析器示例](src/main/java/cn/taketoday/web/demo/multipart/CustomMultipartResolver.java)
+- [AOP示例](src/main/java/cn/taketoday/web/demo/aspect/LogAspect.java)
+- [原型Controller示例](src/main/java/cn/taketoday/web/demo/controller/PrototypeController.java)
+- [RedirectModel示例](src/main/java/cn/taketoday/web/demo/controller/RedirectModelController.java)
+- [拦截器示例](src/main/java/cn/taketoday/web/demo/controller/InterceptorController.java)
+- [StandardArgumentsController示例](src/main/java/cn/taketoday/web/demo/controller/StandardArgumentsController.java)
+- [@ControllerAdvice示例](src/main/java/cn/taketoday/web/demo/config/ApplicationExceptionAdvice.java)
+- [WebMvcConfiguration示例](src/main/java/cn/taketoday/web/demo/config/WebMvcConfiguration.java)
+- [自定义参数转换器示例](src/main/java/cn/taketoday/web/demo/converter/DateConverter.java)
+- [自定义参数解析器示例](src/main/java/cn/taketoday/web/demo/config/UserSessionParameterResolver.java)
+- [自定义参数解析器示例](src/main/java/cn/taketoday/web/demo/config/PageableMethodArgumentResolver.java)
 
 
 ### 联系方式
