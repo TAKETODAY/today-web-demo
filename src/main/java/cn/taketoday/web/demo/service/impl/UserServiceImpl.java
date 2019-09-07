@@ -20,7 +20,7 @@
 package cn.taketoday.web.demo.service.impl;
 
 import cn.taketoday.context.annotation.Autowired;
-import cn.taketoday.context.annotation.Service;
+import cn.taketoday.context.annotation.Prototype;
 import cn.taketoday.web.demo.aspect.Logger;
 import cn.taketoday.web.demo.dao.UserDao;
 import cn.taketoday.web.demo.domain.User;
@@ -31,7 +31,7 @@ import cn.taketoday.web.demo.service.UserService;
  * @author Today <br>
  *         2018-10-27 09:56
  */
-@Service
+@Prototype
 public class UserServiceImpl implements UserService {
 
     @Autowired
