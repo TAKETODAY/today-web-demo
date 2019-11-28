@@ -98,7 +98,7 @@ freemarker.log_template_exceptions 		= false
 - [拦截器示例](src/main/java/cn/taketoday/web/demo/controller/InterceptorController.java)
 - [StandardArgumentsController示例](src/main/java/cn/taketoday/web/demo/controller/StandardArgumentsController.java)
 - [@ControllerAdvice示例](src/main/java/cn/taketoday/web/demo/config/ApplicationExceptionAdvice.java)
-- [WebMvcConfiguration示例](src/main/java/cn/taketoday/web/demo/config/WebMvcConfiguration.java)
+- [WebMvcConfiguration示例](src/main/java/cn/taketoday/web/demo/config/WebMvcConfig.java)
 - [自定义参数转换器示例](src/main/java/cn/taketoday/web/demo/converter/DateConverter.java)
 - [自定义参数解析器示例](src/main/java/cn/taketoday/web/demo/config/UserSessionParameterResolver.java)
 - [自定义参数解析器示例](src/main/java/cn/taketoday/web/demo/config/PageableMethodArgumentResolver.java)
