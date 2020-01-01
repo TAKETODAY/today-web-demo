@@ -1,6 +1,6 @@
 /**
  * Original Author -> 杨海健 (taketoday@foxmail.com) https://taketoday.cn
- * Copyright © TODAY & 2017 - 2019 All Rights Reserved.
+ * Copyright © TODAY & 2017 - 2020 All Rights Reserved.
  * 
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER
  *
@@ -22,7 +22,6 @@ package cn.taketoday.web.demo.interceptor;
 import cn.taketoday.context.annotation.Singleton;
 import cn.taketoday.web.RequestContext;
 import cn.taketoday.web.interceptor.HandlerInterceptor;
-import cn.taketoday.web.mapping.WebMapping;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -34,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 public class FirstInterceptor implements HandlerInterceptor {
 
     @Override
-    public boolean beforeProcess(RequestContext requestContext, WebMapping webMapping) throws Throwable {
+    public boolean beforeProcess(RequestContext requestContext, Object webMapping) throws Throwable {
         log.info("first");
         requestContext.getWriter().write("first");
         return true;

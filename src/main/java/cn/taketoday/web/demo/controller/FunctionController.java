@@ -19,35 +19,37 @@
  */
 package cn.taketoday.web.demo.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
-import cn.taketoday.web.annotation.ActionMapping;
-import cn.taketoday.web.annotation.Controller;
+import cn.taketoday.context.annotation.Component;
+import cn.taketoday.web.RequestContext;
+import cn.taketoday.web.annotation.ResponseBody;
+import cn.taketoday.web.ui.ModelAndView;
 
 /**
  * 
  * @author Today <br>
- *         2018-10-27 10:09
+ *         2018-10-27 10:07
  */
-@Controller
-public class ThymeleafController extends BaseController {
+@Component
+@ResponseBody
+public class FunctionController {
 
-    private static final long serialVersionUID = -3151382835705083327L;
-
-    @ActionMapping("/thymeleaf")
-    public String thymeleaf(HttpServletRequest request) {
-
-        request.setAttribute("hello", "Hello thymeleaf");
-
-        return "/hello";
+    public String function(RequestContext request) {
+        return "body:" + request.method() + " requestURI -> " + request.requestURI();
     }
 
-    @ActionMapping("/thymeleaf/array")
-    public String thymeleaf_array(HttpServletRequest request) {
+    public String test(RequestContext request) {
+        return "body:" + request.method() + " test -> " + request.requestURI();
+    }
 
-        request.setAttribute("arrays", new Integer[] { 1, 100, 22, 33 });
+    public void script(RequestContext request) throws IOException {
 
-        return "/array";
+        ModelAndView modelAndView = new ModelAndView();
+        request.modelAndView(modelAndView);
+
+        modelAndView.setContentType("text/html;charset=UTF-8");
+        modelAndView.setView(new StringBuilder("<script>alert('HELLO， 你好 script');</script>"));
     }
 
 }

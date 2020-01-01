@@ -1,6 +1,6 @@
 /**
  * Original Author -> 杨海健 (taketoday@foxmail.com) https://taketoday.cn
- * Copyright © TODAY & 2017 - 2019 All Rights Reserved.
+ * Copyright © TODAY & 2017 - 2020 All Rights Reserved.
  * 
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER
  *
@@ -27,17 +27,15 @@ import cn.taketoday.web.RequestContext;
 import cn.taketoday.web.demo.Constant;
 import cn.taketoday.web.demo.view.Json;
 import cn.taketoday.web.interceptor.HandlerInterceptor;
-import cn.taketoday.web.mapping.WebMapping;
 
 /**
- * 
- * @author Today <br>
+ * @author TODAY <br>
  *         2018-10-27 10:13
  */
 public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
-    public boolean beforeProcess(RequestContext requestContext, WebMapping webMapping) throws Throwable {
+    public boolean beforeProcess(RequestContext requestContext, Object webMapping) throws Throwable {
 
         if ((requestContext.nativeSession(HttpSession.class).getAttribute(Constant.USER_INFO)) == null) {
 
