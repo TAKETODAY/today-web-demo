@@ -44,9 +44,7 @@ public class FunctionController {
     }
 
     public void script(RequestContext request) throws IOException {
-
-        ModelAndView modelAndView = new ModelAndView();
-        request.modelAndView(modelAndView);
+        ModelAndView modelAndView = new ModelAndView(request);
 
         modelAndView.setContentType("text/html;charset=UTF-8");
         modelAndView.setView(new StringBuilder("<script>alert('HELLO， 你好 script');</script>"));

@@ -22,9 +22,9 @@ package cn.taketoday.web.demo.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import cn.taketoday.web.annotation.Application;
-import cn.taketoday.web.annotation.Cookie;
+import cn.taketoday.web.annotation.CookieValue;
 import cn.taketoday.web.annotation.GET;
-import cn.taketoday.web.annotation.Header;
+import cn.taketoday.web.annotation.RequestHeader;
 import cn.taketoday.web.annotation.RestController;
 
 /**
@@ -36,13 +36,13 @@ import cn.taketoday.web.annotation.RestController;
 public class AnnotationController {
 
     @GET("header")
-    public String annotation(HttpServletRequest request, @Header("User-Agent") String agent) {
+    public String annotation(HttpServletRequest request, @RequestHeader("User-Agent") String agent) {
 
         return request.getMethod() + " User-Agent -> " + agent;
     }
 
     @GET("cookie")
-    public String cookie(HttpServletRequest request, @Cookie("JSESSIONID") String sessionId) {
+    public String cookie(HttpServletRequest request, @CookieValue("JSESSIONID") String sessionId) {
 
         return request.getMethod() + " your sessionId -> " + sessionId;
     }

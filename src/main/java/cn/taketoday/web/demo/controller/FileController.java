@@ -40,7 +40,7 @@ import cn.taketoday.web.annotation.GET;
 import cn.taketoday.web.annotation.Multipart;
 import cn.taketoday.web.annotation.RequestMapping;
 import cn.taketoday.web.annotation.ResponseBody;
-import cn.taketoday.web.annotation.Session;
+import cn.taketoday.web.annotation.SessionAttribute;
 import cn.taketoday.web.demo.domain.User;
 import cn.taketoday.web.multipart.MultipartFile;
 
@@ -108,7 +108,7 @@ public final class FileController extends BaseController {
 
     @GET("/void/display")
     public final void display_void(HttpServletRequest request, HttpServletResponse response,
-            @Session(USER_INFO) User user) throws IOException {
+            @SessionAttribute(USER_INFO) User user) throws IOException {
 
         response.setContentType("image/jpeg");
         String imagePath = "D:/taketoday.cn/webapps/upload/logo.png";

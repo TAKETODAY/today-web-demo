@@ -26,7 +26,7 @@ import cn.taketoday.context.utils.StringUtils;
 import cn.taketoday.web.RequestContext;
 import cn.taketoday.web.demo.utils.DemoUtils;
 import cn.taketoday.web.handler.MethodParameter;
-import cn.taketoday.web.resolver.method.ParameterResolver;
+import cn.taketoday.web.resolver.ParameterResolver;
 
 /**
  * @author TODAY <br>

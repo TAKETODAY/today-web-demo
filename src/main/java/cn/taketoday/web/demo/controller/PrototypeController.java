@@ -44,9 +44,9 @@ import cn.taketoday.web.validation.Errors;
 @RequestMapping("/prototype")
 public class PrototypeController extends BaseController {
 
-    private static final long serialVersionUID = -2144421103258985200L;
-
-//	@Resource
+    private static final long serialVersionUID = 1L;
+    
+    //	@Resource
     @Autowired
     private UserService userService;
 

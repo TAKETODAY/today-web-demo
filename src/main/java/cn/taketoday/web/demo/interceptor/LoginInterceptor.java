@@ -21,8 +21,6 @@ package cn.taketoday.web.demo.interceptor;
 
 import javax.servlet.http.HttpSession;
 
-import com.alibaba.fastjson.JSON;
-
 import cn.taketoday.web.RequestContext;
 import cn.taketoday.web.demo.Constant;
 import cn.taketoday.web.demo.view.Json;
@@ -38,8 +36,10 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean beforeProcess(RequestContext requestContext, Object webMapping) throws Throwable {
 
         if ((requestContext.nativeSession(HttpSession.class).getAttribute(Constant.USER_INFO)) == null) {
-
-            requestContext.getWriter().write(JSON.toJSONString(Json.failed().setCode(401).setMsg("Login Time Out")));
+            requestContext.getWriter().write(Json.failed()
+                    .setCode(401)
+                    .setMsg("Login Time Out").toString()//
+            );
             return false;
         }
         return true;

@@ -26,7 +26,7 @@ import cn.taketoday.web.RequestContext;
 import cn.taketoday.web.demo.Constant;
 import cn.taketoday.web.exception.UnauthorizedException;
 import cn.taketoday.web.handler.MethodParameter;
-import cn.taketoday.web.resolver.method.OrderedParameterResolver;
+import cn.taketoday.web.resolver.OrderedParameterResolver;
 
 /**
  * @author TODAY <br>

@@ -74,7 +74,7 @@ public class WebMvcConfig implements WebMvcConfiguration {
     public void configureViewController(ViewControllerHandlerRegistry registry) {
         registry.addViewController("/github", "redirect:https://github.com");
         registry.addViewController("/login.do")
-                .setAssetsPath("redirect:/login");
+                .setResource("redirect:/login");
     }
 
     @Override
