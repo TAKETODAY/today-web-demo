@@ -103,8 +103,8 @@ freemarker.log_template_exceptions 		= false
 - [自定义参数解析器示例](src/main/java/cn/taketoday/web/demo/config/UserSessionParameterResolver.java)
 - [自定义参数解析器示例](src/main/java/cn/taketoday/web/demo/config/PageableMethodArgumentResolver.java)
 
-
 ### 联系方式
+
 - 邮箱 taketoday@foxmail.com
 
 ### 开源协议

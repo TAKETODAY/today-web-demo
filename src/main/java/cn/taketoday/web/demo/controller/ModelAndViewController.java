@@ -1,6 +1,6 @@
 /**
  * Original Author -> 杨海健 (taketoday@foxmail.com) https://taketoday.cn
- * Copyright © TODAY & 2017 - 2020 All Rights Reserved.
+ * Copyright © TODAY & 2017 - 2021 All Rights Reserved.
  * 
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER
  *
@@ -29,7 +29,6 @@ import cn.taketoday.context.annotation.Autowired;
 import cn.taketoday.web.RequestMethod;
 import cn.taketoday.web.annotation.Controller;
 import cn.taketoday.web.annotation.RequestMapping;
-import cn.taketoday.web.annotation.ResponseStatus;
 import cn.taketoday.web.ui.ModelAndView;
 import lombok.extern.slf4j.Slf4j;
 
@@ -63,7 +62,6 @@ public class ModelAndViewController {
     }
 
     @RequestMapping("/script")
-    @ResponseStatus(value = 500, msg = "出错啦")
     public void script(ModelAndView modelAndView) {
         modelAndView.setContentType("text/html;charset=UTF-8");
         modelAndView.setView(new StringBuilder("<script>alert('HELLO， 你好');</script>"));
