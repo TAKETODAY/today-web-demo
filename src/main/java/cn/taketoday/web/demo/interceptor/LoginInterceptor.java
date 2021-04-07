@@ -19,30 +19,31 @@
  */
 package cn.taketoday.web.demo.interceptor;
 
-import javax.servlet.http.HttpSession;
-
 import cn.taketoday.web.RequestContext;
 import cn.taketoday.web.demo.Constant;
 import cn.taketoday.web.demo.view.Json;
 import cn.taketoday.web.interceptor.HandlerInterceptor;
+import cn.taketoday.web.interceptor.WebSessionHandlerInterceptor;
+import cn.taketoday.web.session.WebSessionManager;
 
 /**
  * @author TODAY <br>
  *         2018-10-27 10:13
  */
-public class LoginInterceptor implements HandlerInterceptor {
+public class LoginInterceptor extends WebSessionHandlerInterceptor implements HandlerInterceptor {
 
-    @Override
-    public boolean beforeProcess(RequestContext requestContext, Object webMapping) throws Throwable {
+  public LoginInterceptor(WebSessionManager sessionManager) {
+    super(sessionManager);
+  }
 
-        if ((requestContext.nativeSession(HttpSession.class).getAttribute(Constant.USER_INFO)) == null) {
-            requestContext.getWriter().write(Json.failed()
-                    .setCode(401)
-                    .setMsg("Login Time Out").toString()//
-            );
-            return false;
-        }
-        return true;
+  @Override
+  public boolean beforeProcess(RequestContext requestContext, Object webMapping) throws Throwable {
+    if ((getAttribute(requestContext, Constant.USER_INFO)) == null) {
+      final Json setMsg = Json.failed().setCode(401).setMsg("Login Time Out");
+      requestContext.getWriter().write(setMsg.toString());
+      return false;
     }
+    return true;
+  }
 
 }

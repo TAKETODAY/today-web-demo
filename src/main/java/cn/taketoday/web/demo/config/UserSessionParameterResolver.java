@@ -19,14 +19,14 @@
  */
 package cn.taketoday.web.demo.config;
 
-import javax.servlet.http.HttpSession;
-
 import cn.taketoday.context.annotation.Singleton;
 import cn.taketoday.web.RequestContext;
 import cn.taketoday.web.demo.Constant;
 import cn.taketoday.web.exception.UnauthorizedException;
 import cn.taketoday.web.handler.MethodParameter;
 import cn.taketoday.web.resolver.OrderedParameterResolver;
+import cn.taketoday.web.session.WebSession;
+import cn.taketoday.web.session.WebSessionManager;
 
 /**
  * @author TODAY <br>
@@ -34,24 +34,32 @@ import cn.taketoday.web.resolver.OrderedParameterResolver;
  */
 @Singleton
 public class UserSessionParameterResolver implements OrderedParameterResolver {
+  private final WebSessionManager sessionManager;
 
-    @Override
-    public boolean supports(MethodParameter parameter) {
-        return parameter.isAnnotationPresent(UserSession.class);
-    }
+  public UserSessionParameterResolver(WebSessionManager sessionManager) {
+    this.sessionManager = sessionManager;
+  }
 
-    @Override
-    public Object resolveParameter(final RequestContext requestContext, final MethodParameter parameter) throws Throwable {
+  @Override
+  public boolean supports(MethodParameter parameter) {
+    return parameter.isAnnotationPresent(UserSession.class);
+  }
 
-        final Object attribute = requestContext.nativeSession(HttpSession.class).getAttribute(Constant.USER_INFO);
-        if (attribute == null) {
-            throw new UnauthorizedException();
-        }
+  @Override
+  public Object resolveParameter(final RequestContext context, final MethodParameter parameter) throws Throwable {
+    final WebSession session = sessionManager.getSession(context, false);
+    if (session != null) {
+      final Object attribute = session.getAttribute(Constant.USER_INFO);
+      if (attribute != null) {
         return attribute;
+      }
     }
+    throw new UnauthorizedException();
+  }
 
-    @Override
-    public int getOrder() {
-        return HIGHEST_PRECEDENCE;
-    }
+  @Override
+  public int getOrder() {
+    return HIGHEST_PRECEDENCE;
+  }
+
 }

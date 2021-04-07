@@ -65,10 +65,10 @@ public final class IndexController extends BaseController {
     public String index(@RequestParam(required = false) final String q, String userName, Integer userId, Model model,
             HttpServletRequest request) {
 
-        model.attribute("q", q);
-        model.attribute("userId", userId);
-        model.attribute("userName", userName);
-        model.attribute("url", request.getRequestURL());
+        model.setAttribute("q", q);
+        model.setAttribute("userId", userId);
+        model.setAttribute("userName", userName);
+        model.setAttribute("url", request.getRequestURL());
 
         return "{\"q\":" + q + ",\"userId\":\"" + userId + "\",\"userName\":\"" + userName + "\"}";
     }

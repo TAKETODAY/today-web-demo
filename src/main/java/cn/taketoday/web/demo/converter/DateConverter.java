@@ -23,26 +23,25 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import cn.taketoday.context.annotation.Singleton;
-import cn.taketoday.context.conversion.StringTypeConverter;
+import cn.taketoday.context.conversion.support.StringSourceTypeConverter;
 import cn.taketoday.context.exception.ConversionException;
+import cn.taketoday.context.utils.GenericDescriptor;
 
 /**
  * @author TODAY <br>
  *         2018-08-08 07:19
  */
 @Singleton
-public class DateConverter extends StringTypeConverter {
+public class DateConverter extends StringSourceTypeConverter {
 
     @Override
-    protected Object convertInternal(Class<?> targetClass, String source) throws ConversionException {
-
-        try {
-
-            return new SimpleDateFormat("yyyy-MM-dd").parse(source);
-        }
-        catch (ParseException e) {
-            throw new ConversionException(e);
-        }
-    }
+    protected Object convertInternal(GenericDescriptor targetClass, String source) {
+      try {
+          return new SimpleDateFormat("yyyy-MM-dd").parse(source);
+      }
+      catch (ParseException e) {
+          throw new ConversionException(e);
+      }
+  }
 
 }

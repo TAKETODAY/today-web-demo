@@ -87,7 +87,7 @@ public class PageableMethodArgumentResolver implements ParameterResolver {
         public int getCurrent() {
 
             if (current == null) {
-                final String parameter = request.parameter(PARAMETER_CURRENT);
+                final String parameter = request.getParameter(PARAMETER_CURRENT);
                 if (StringUtils.isEmpty(parameter)) {
                     current = 1;
                 }
@@ -102,7 +102,7 @@ public class PageableMethodArgumentResolver implements ParameterResolver {
         public int getSize() {
             if (size == null) {
                 int s;
-                final String parameter = request.parameter(PARAMETER_SIZE);
+                final String parameter = request.getParameter(PARAMETER_SIZE);
                 if (StringUtils.isEmpty(parameter)) {
                     s = defaultListSize;
                 }

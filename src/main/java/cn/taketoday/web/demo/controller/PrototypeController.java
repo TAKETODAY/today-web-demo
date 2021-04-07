@@ -63,17 +63,17 @@ public class PrototypeController extends BaseController {
 
         if (error.hasErrors()) {
             System.err.println(error.getAllErrors());
-            redirectModel.attribute("msg", error.getAllErrors().toString());
+            redirectModel.setAttribute("msg", error.getAllErrors().toString());
             return "redirect:/login";
         }
 
         User login = userService.login(user);
         if (login == null) {
-            redirectModel.attribute("userId", user.getUserId());
-            redirectModel.attribute("msg", "登录失败");
+            redirectModel.setAttribute("userId", user.getUserId());
+            redirectModel.setAttribute("msg", "登录失败");
             return "redirect:/login";
         }
-        redirectModel.attribute("msg", "登录成功");
+        redirectModel.setAttribute("msg", "登录成功");
         session.setAttribute(USER_INFO, login);
         return "redirect:/user/info";
     }
