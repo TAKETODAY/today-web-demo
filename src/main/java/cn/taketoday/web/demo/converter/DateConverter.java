@@ -1,7 +1,7 @@
 /**
  * Original Author -> 杨海健 (taketoday@foxmail.com) https://taketoday.cn
  * Copyright © TODAY & 2017 - 2021 All Rights Reserved.
- * 
+ *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER
  *
  * This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@ package cn.taketoday.web.demo.converter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import cn.taketoday.context.annotation.Singleton;
 import cn.taketoday.context.conversion.support.StringSourceTypeConverter;
@@ -34,14 +35,19 @@ import cn.taketoday.context.utils.GenericDescriptor;
 @Singleton
 public class DateConverter extends StringSourceTypeConverter {
 
-    @Override
-    protected Object convertInternal(GenericDescriptor targetClass, String source) {
-      try {
-          return new SimpleDateFormat("yyyy-MM-dd").parse(source);
-      }
-      catch (ParseException e) {
-          throw new ConversionException(e);
-      }
+  @Override
+  public boolean supportsInternal(GenericDescriptor targetType, Class<?> sourceType) {
+    return targetType.is(Date.class);
+  }
+
+  @Override
+  protected Date convertInternal(GenericDescriptor targetClass, String source) {
+    try {
+      return new SimpleDateFormat("yyyy-MM-dd").parse(source);
+    }
+    catch (ParseException e) {
+      throw new ConversionException(e);
+    }
   }
 
 }

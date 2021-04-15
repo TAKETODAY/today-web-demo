@@ -30,12 +30,14 @@ import cn.taketoday.web.registry.FunctionHandlerRegistry;
 import cn.taketoday.web.registry.ResourceHandlerRegistry;
 import cn.taketoday.web.registry.ViewControllerHandlerRegistry;
 import cn.taketoday.web.resource.CacheControl;
+import cn.taketoday.web.session.EnableWebSession;
 
 /**
  * @author TODAY <br>
  *         2019-07-20 13:48
  */
 @Singleton
+@EnableWebSession
 public class WebMvcConfig implements WebMvcConfiguration {
 
     // D:\www.yhj.com\webapps\today-web-demo

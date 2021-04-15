@@ -47,11 +47,9 @@ public class StandardArgumentsController {
     // request related
 
     @GET("/request")
-    public String standardRequestArgs(HttpServletRequest request, Principal user, Locale locale) {
+    public String standardRequestArgs(HttpServletRequest request) {
         StringBuilder buffer = new StringBuilder();
         buffer.append("request = ").append(request).append(", ");
-        buffer.append("userPrincipal = ").append(user).append(", ");
-        buffer.append("requestLocale = ").append(locale);
         return buffer.toString();
     }
 
