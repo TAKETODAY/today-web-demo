@@ -59,7 +59,7 @@ public class WebMvcConfig implements WebMvcConfiguration {
 
         registry.addResourceMapping("/favicon.ico")
                 .addLocations("classpath:/favicon.ico")
-                .cacheControl(CacheControl.create().publicCache());
+                .cacheControl(CacheControl.empty().cachePublic());
 
         registry.addResourceMapping(LoginInterceptor.class)
                 .setOrder(Ordered.HIGHEST_PRECEDENCE)

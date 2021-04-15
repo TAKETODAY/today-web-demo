@@ -36,11 +36,11 @@ import cn.taketoday.web.ui.ModelAndView;
 public class FunctionController {
 
     public String function(RequestContext request) {
-        return "body:" + request.getMethod() + " requestURI -> " + request.getRequestURI();
+        return "body:" + request.getMethod() + " requestURI -> " + request.getRequestPath();
     }
 
     public String test(RequestContext request) {
-        return "body:" + request.getMethod() + " test -> " + request.getRequestURI();
+        return "body:" + request.getMethod() + " test -> " + request.getRequestPath();
     }
 
     public void script(RequestContext request) throws IOException {
