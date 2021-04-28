@@ -44,7 +44,7 @@ public class PageableMethodArgumentResolver implements ParameterResolver {
 
     @Override
     public boolean supports(MethodParameter parameter) {
-        return parameter.isAssignableFrom(Pageable.class);
+        return parameter.isAssignableTo(Pageable.class);
     }
 
     @Override
